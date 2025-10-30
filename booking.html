@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Ride | Renkar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="booking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="booking-nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="brand">Renkar</a>
+                <button class="menu-toggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="booking-container">
+        <div class="container">
+            <div class="booking-header">
+                <h1>Find your ride</h1>
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search car, brand, or location...">
+                </div>
+            </div>
+
+            <!-- Car Listings Grid -->
+            <div class="car-grid" id="carGrid">
+                <!-- Cars will be loaded here via JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Rental Confirmation Modal -->
+    <div class="modal" id="rentalModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-car-image" id="modalCarImage"></div>
+                <h2 id="modalCarName"></h2>
+                <div class="car-details">
+                    <p><i class="fas fa-map-marker-alt"></i> <span id="modalCarLocation"></span></p>
+                    <p><i class="fas fa-tag"></i> <span id="modalCarPrice"></span></p>
+                    <p><i class="fas fa-info-circle"></i> Free cancellation up to 24 hours before rental</p>
+                </div>
+                <button class="btn btn-primary btn-block" id="confirmRental">Confirm Rental</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div class="toast" id="successToast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span>Car booked successfully!</span>
+        </div>
+    </div>
+
+    <script src="booking.js"></script>
+</body>
+</html>

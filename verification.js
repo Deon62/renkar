@@ -123,9 +123,9 @@ document.addEventListener('DOMContentLoaded', function() {
             loader.style.display = 'none';
             successMessage.style.display = 'block';
             
-            // Redirect to hire page after showing success message
+            // Redirect to booking page after showing success message
             setTimeout(() => {
-                window.location.href = 'index.html'; // Change to your hire page
+                window.location.href = 'booking.html';
             }, 2000);
             
         }, 3000); // 3 second delay for demo
