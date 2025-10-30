@@ -138,9 +138,9 @@ document.addEventListener('DOMContentLoaded', function() {
         otpForm.querySelector('button').disabled = true;
         otpInputs.forEach(input => input.disabled = true);
         
-        // Redirect to home page after delay
+        // Redirect to license upload page after delay
         setTimeout(() => {
-            window.location.href = 'index.html';
+            window.location.href = 'license-upload.html';
         }, 2000);
     }
 

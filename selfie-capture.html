@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take a Selfie | Renkar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="verification.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="verification-flow">
+        <div class="verification-container">
+            <div class="verification-card" id="selfieCard">
+                <div class="verification-header">
+                    <h1>Take a quick selfie</h1>
+                    <p class="subtext">We'll use this to match your license and confirm it's you.</p>
+                </div>
+                
+                <div class="camera-container" id="cameraContainer">
+                    <div class="camera-placeholder" id="cameraPlaceholder">
+                        <i class="fas fa-camera"></i>
+                        <p>Camera preview will appear here</p>
+                    </div>
+                    <video id="video" autoplay playsinline style="display: none;"></video>
+                    <canvas id="canvas" style="display: none;"></canvas>
+                </div>
+                
+                <div class="preview-container" id="selfiePreviewContainer" style="display: none;">
+                    <img id="selfiePreview" src="" alt="Selfie preview" class="preview-image">
+                    <button class="btn btn-secondary" id="retakeSelfie">Retake</button>
+                </div>
+                
+                <button class="btn btn-primary" id="takePhotoBtn">
+                    <i class="fas fa-camera"></i> Open Camera
+                </button>
+                
+                <button class="btn btn-primary" id="continueToVerifyBtn" style="display: none;">
+                    Continue to Verification
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="verification.js"></script>
+</body>
+</html>

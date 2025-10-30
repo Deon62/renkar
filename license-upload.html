@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your License | Renkar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="verification.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="verification-flow">
+        <div class="verification-container">
+            <div class="verification-card" id="licenseCard">
+                <div class="verification-header">
+                    <h1>Verify your driver's license</h1>
+                    <p class="subtext">Upload a clear photo of your license to continue.</p>
+                </div>
+                
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Tap to upload license</p>
+                    <input type="file" id="licenseUpload" accept="image/*" capture="environment" style="display: none;">
+                </div>
+                
+                <div class="preview-container" id="previewContainer" style="display: none;">
+                    <img id="licensePreview" src="" alt="License preview" class="preview-image">
+                    <button class="btn btn-secondary" id="changeImage">Change Image</button>
+                </div>
+                
+                <button class="btn btn-primary" id="continueBtn" disabled>Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="verification.js"></script>
+</body>
+</html>
