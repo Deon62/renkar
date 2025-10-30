@@ -123,6 +123,7 @@ p {
     text-align: center;
     max-width: 800px;
     margin: 0 auto 4rem;
+    color: white;
 }
 
 .section-subtitle {
@@ -1069,6 +1070,11 @@ input[type="tel"]:focus {
     padding: 6rem 0;
     background-color: #0A1D37;
     color: white;
+}
+
+.faq-section .section-header h2,
+.faq-section .section-subtitle {
+    color: white !important;
 }
 
 .faq-container {
