@@ -28,44 +28,9 @@ body {
     padding: 0 1.5rem;
 }
 
-/* Navbar */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--white);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    z-index: 1000;
-    padding: 1rem 0;
-}
-
-.nav-content {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0.5rem 0;
-}
-
-.menu-toggle {
-    background: none;
-    border: none;
-    font-size: 1.25rem;
-    color: var(--primary);
-    cursor: pointer;
-    padding: 0.5rem;
-    margin-right: -0.5rem;
-    border-radius: 4px;
-    transition: background-color 0.2s;
-}
-
-.menu-toggle:hover {
-    background-color: var(--light-gray);
-}
-
 /* Main Container */
 .checkout-container {
-    padding-top: 5rem;
+    padding-top: 2rem;
     padding-bottom: 4rem;
     min-height: 100vh;
 }
@@ -143,6 +108,10 @@ body {
     gap: 0.75rem;
 }
 
+.payment-option[data-method="wallet"] {
+    grid-column: 1 / -1;
+}
+
 .payment-option {
     display: flex;
     flex-direction: column;
@@ -185,6 +154,18 @@ body {
 .card-logos img {
     max-width: 35px;
     max-height: 35px;
+    object-fit: contain;
+}
+
+.wallet-logos {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.wallet-logos img {
+    max-width: 30px;
+    max-height: 30px;
     object-fit: contain;
 }
 
@@ -302,6 +283,28 @@ body {
 .btn-pay:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+.btn-back {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    background-color: var(--white);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    background-color: var(--primary);
+    color: var(--white);
 }
 
 /* Loading Spinner */

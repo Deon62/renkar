@@ -81,6 +81,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
         }
+        
+        if (selectedMethod === 'wallet') {
+            const walletAddress = document.getElementById('walletAddress').value;
+            
+            if (!walletAddress) {
+                alert('Please enter your wallet address');
+                return;
+            }
+        }
 
         // Disable button and show loading spinner
         this.disabled = true;

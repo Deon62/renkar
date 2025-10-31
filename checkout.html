@@ -10,17 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <button class="menu-toggle" aria-label="Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
-
     <!-- Main Content -->
     <main class="checkout-container">
         <div class="container">
@@ -59,8 +48,11 @@
                         </div>
                     </button>
                     <button class="payment-option" data-method="wallet">
-                        <i class="fas fa-wallet"></i>
-                        <span>Wallet</span>
+                        <div class="wallet-logos">
+                            <img src="assets/payments/binance.png" alt="Binance">
+                            <img src="assets/payments/lobstr.png" alt="Lobstr">
+                            <img src="assets/payments/metamask.png" alt="MetaMask">
+                        </div>
                     </button>
                     <button class="payment-option" data-method="cash">
                         <img src="assets/payments/cash.png" alt="Cash">
@@ -102,9 +94,9 @@
 
                 <!-- Wallet Input -->
                 <div class="input-group wallet-input" id="walletInput" style="display: none;">
-                    <div class="form-field disabled-field">
-                        <label for="walletBalance">Wallet Balance</label>
-                        <input type="text" id="walletBalance" value="KSh 0.00" readonly>
+                    <div class="form-field">
+                        <label for="walletAddress">Address</label>
+                        <input type="text" id="walletAddress" placeholder="Enter your wallet address">
                     </div>
                 </div>
 
@@ -124,6 +116,8 @@
                 <button class="btn-pay" id="payButton">
                     <span class="btn-text">Pay Now</span>
                 </button>
+                
+                <a href="booking.html" class="btn-back">Back to Hire Page</a>
             </div>
 
             <!-- Success Message -->
