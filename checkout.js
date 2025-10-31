@@ -97,12 +97,24 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Simulate payment processing
         setTimeout(() => {
-            // Hide pay section
-            paySection.style.display = 'none';
+            // Get payment method name
+            const methodName = 
+                selectedMethod === 'mpesa' ? 'M-Pesa' :
+                selectedMethod === 'airtel' ? 'Airtel Money' :
+                selectedMethod === 'card' ? 'Credit Card' :
+                selectedMethod === 'wallet' ? 'Crypto Wallet' : 'Cash';
             
-            // Show success message
-            successMessage.style.display = 'block';
-        }, 2500);
+            // Calculate return date
+            const today = new Date();
+            const returnDate = new Date();
+            returnDate.setDate(today.getDate() + days);
+            
+            // Format amount without KSh
+            const amount = totalAmount.toLocaleString();
+            
+            // Redirect to success page with booking details
+            window.location.href = `payment-success.html?car=${encodeURIComponent(carDetails.name)}&amount=${amount}&method=${encodeURIComponent(methodName)}&days=${days}`;
+        }, 1500);
     });
 
     // Load car details from URL parameters

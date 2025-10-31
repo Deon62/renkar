@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful | Renkar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .success-container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: #10B981;
+            margin-bottom: 1.5rem;
+            animation: bounce 1s;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+
+        h1 {
+            color: #0A1D37;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-message {
+            color: #4B5563;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .receipt-card {
+            background: #F9FAFB;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+            border: 1px solid #E5E7EB;
+        }
+
+        .receipt-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .receipt-item:last-child {
+            border-bottom: none;
+        }
+
+        .receipt-item .label {
+            color: #4B5563;
+            font-weight: 500;
+        }
+
+        .receipt-item .value {
+            color: #0A1D37;
+            font-weight: 600;
+        }
+
+        .timeline {
+            margin: 2.5rem 0;
+            position: relative;
+            width: 100%;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #E5E7EB;
+            z-index: 1;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0A1D37;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+            font-size: 1.25rem;
+            box-shadow: 0 2px 8px rgba(10, 29, 55, 0.3);
+        }
+
+        .timeline-content {
+            margin-left: 1.5rem;
+            padding: 1rem;
+            background: #F9FAFB;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+            width: calc(100% - 65px);
+            position: relative;
+            z-index: 2;
+            text-align: left;
+        }
+
+        .timeline-date {
+            display: block;
+            font-weight: 600;
+            color: #0A1D37;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-text {
+            font-size: 1rem;
+            color: #0A1D37;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #4B5563;
+            margin-top: 0.5rem;
+        }
+        
+        .timeline-detail i {
+            color: #0A1D37;
+            width: 16px;
+            text-align: center;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-download {
+            background: #0A1D37;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-download:hover {
+            background: #081a2e;
+        }
+
+        .btn-home {
+            display: block;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0A1D37;
+            text-decoration: none;
+            border: 2px solid #0A1D37;
+            border-radius: 8px;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .btn-home:hover {
+            background: #0A1D37;
+            color: white;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .success-container {
+                padding: 1.5rem;
+            }
+            
+            .timeline::before {
+                left: 25px;
+            }
+
+            .timeline-item {
+                flex-direction: row;
+                align-items: flex-start;
+                padding-left: 0;
+            }
+
+            .timeline-icon {
+                position: relative;
+                left: 0;
+            }
+
+            .timeline-content {
+                width: calc(100% - 65px);
+                margin-left: 1.5rem;
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h1>Payment Successful!</h1>
+        <p class="success-message">Your car booking has been confirmed. Here's your receipt:</p>
+        
+        <div class="receipt-card">
+            <div class="receipt-item">
+                <span class="label">Car:</span>
+                <span class="value" id="receiptCarName">Toyota Axio</span>
+            </div>
+            <div class="receipt-item">
+                <span class="label">Amount Paid:</span>
+                <span class="value" id="receiptAmount">KSh 5,000</span>
+            </div>
+            <div class="receipt-item">
+                <span class="label">Payment Method:</span>
+                <span class="value" id="receiptMethod">M-Pesa</span>
+            </div>
+            <div class="receipt-item">
+                <span class="label">Booking Reference:</span>
+                <span class="value" id="bookingReference">RENKAR-123456</span>
+            </div>
+        </div>
+        
+        
+        <div class="action-buttons">
+            <button class="btn-download" id="downloadReceipt">
+                <i class="fas fa-download"></i> Download Receipt
+            </button>
+            <a href="index.html" class="btn-home">Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get booking details from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const carName = urlParams.get('car') || 'Toyota Axio';
+            const amount = urlParams.get('amount') || '5,000';
+            const method = urlParams.get('method') || 'M-Pesa';
+            const days = parseInt(urlParams.get('days')) || 2;
+            
+            // Generate a random booking reference
+            const ref = 'RENKAR-' + Math.floor(100000 + Math.random() * 900000);
+            
+            // Calculate dates
+            const today = new Date();
+            const returnDate = new Date();
+            returnDate.setDate(today.getDate() + days);
+            
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            
+            // Update the DOM with booking details
+            document.getElementById('receiptCarName').textContent = carName;
+            document.getElementById('receiptAmount').textContent = `KSh ${amount}`;
+            document.getElementById('receiptMethod').textContent = method;
+            document.getElementById('bookingReference').textContent = ref;
+            document.getElementById('pickupDate').textContent = today.toLocaleDateString('en-US', options);
+            document.getElementById('returnDate').textContent = returnDate.toLocaleDateString('en-US', options);
+            
+            // Handle download receipt button
+            document.getElementById('downloadReceipt').addEventListener('click', function() {
+                // In a real app, this would generate and download a PDF receipt
+                alert('Receipt download would be implemented here');
+                
+                // For demo purposes, we'll just show a success message
+                const button = this;
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Receipt Downloaded';
+                button.style.background = '#10B981';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
