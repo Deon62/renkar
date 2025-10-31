@@ -47,19 +47,102 @@ document.addEventListener('DOMContentLoaded', function() {
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
         const cameraPlaceholder = document.getElementById('cameraPlaceholder');
+        const cameraContainer = document.getElementById('cameraContainer');
         const selfiePreview = document.getElementById('selfiePreview');
         const selfiePreviewContainer = document.getElementById('selfiePreviewContainer');
         const retakeSelfieBtn = document.getElementById('retakeSelfie');
         const continueToVerifyBtn = document.getElementById('continueToVerifyBtn');
+        const cameraControls = document.querySelector('.camera-controls');
         let stream = null;
         
         // Open camera
         takePhotoBtn.addEventListener('click', async function() {
+            await initCamera();
+        });
+        
+        // Initialize camera on page load if we're on the selfie capture page
+        if (window.location.pathname.includes('selfie-capture')) {
+            // Show the camera controls
+            cameraControls.style.display = 'flex';
+            cameraControls.style.justifyContent = 'center';
+        }
+        
+        // Take photo
+        function takePhoto() {
+            const context = canvas.getContext('2d');
+            const size = Math.min(video.videoWidth, video.videoHeight);
+            const offsetX = (video.videoWidth - size) / 2;
+            const offsetY = (video.videoHeight - size) / 2;
+            
+            // Set canvas to the size of the circular preview
+            canvas.width = 500;
+            canvas.height = 500;
+            
+            // Draw the circular mask
+            context.save();
+            context.beginPath();
+            context.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, 0, Math.PI * 2);
+            context.closePath();
+            context.clip();
+            
+            // Draw the video frame centered and cropped to a circle
+            context.drawImage(
+                video, 
+                offsetX, offsetY, size, size,  // source rectangle
+                0, 0, canvas.width, canvas.height  // destination rectangle
+            );
+            context.restore();
+            
+            // Stop video stream
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            
+            // Show preview and hide camera
+            selfiePreview.src = canvas.toDataURL('image/jpeg');
+            cameraContainer.style.display = 'none';
+            selfiePreviewContainer.style.display = 'block';
+            takePhotoBtn.style.display = 'none'; // Hide the take photo button
+        }
+        
+        // Retake photo
+        retakeSelfieBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Reset the UI
+            selfiePreviewContainer.style.display = 'none';
+            cameraPlaceholder.style.display = 'flex';
+            cameraContainer.style.display = 'block';
+            
+            // Reset the take photo button
+            takePhotoBtn.style.display = 'block';
+            takePhotoBtn.innerHTML = '<i class="fas fa-camera"></i> Take Photo';
+            
+            // Reinitialize camera
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+            
+            // Reopen camera
+            takePhotoBtn.onclick = function() {
+                initCamera();
+            };
+            
+            // Force a small delay to ensure camera is properly reset
+            setTimeout(() => {
+                initCamera();
+            }, 100);
+        });
+        
+        // Initialize camera function
+        async function initCamera() {
             try {
                 stream = await navigator.mediaDevices.getUserMedia({ 
                     video: { 
                         width: { ideal: 1280 },
-                        height: { ideal: 720 },
+                        height: { ideal: 1280 },
+                        aspectRatio: 1,
                         facingMode: 'user' 
                     },
                     audio: false 
@@ -71,39 +154,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 takePhotoBtn.innerHTML = '<i class="fas fa-camera"></i> Take Photo';
                 takePhotoBtn.onclick = takePhoto;
                 
+                // Show the camera controls
+                cameraControls.style.display = 'flex';
+                
             } catch (err) {
                 console.error('Error accessing camera:', err);
                 alert('Could not access the camera. Please make sure you have granted camera permissions.');
             }
-        });
-        
-        // Take photo
-        function takePhoto() {
-            const context = canvas.getContext('2d');
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            
-            // Stop video stream
-            if (stream) {
-                stream.getTracks().forEach(track => track.stop());
-            }
-            
-            // Show preview
-            selfiePreview.src = canvas.toDataURL('image/jpeg');
-            video.style.display = 'none';
-            selfiePreviewContainer.style.display = 'block';
-            takePhotoBtn.style.display = 'none';
-            continueToVerifyBtn.style.display = 'block';
         }
-        
-        // Retake photo
-        retakeSelfieBtn.addEventListener('click', function() {
-            selfiePreviewContainer.style.display = 'none';
-            continueToVerifyBtn.style.display = 'none';
-            takePhotoBtn.style.display = 'block';
-            takePhotoBtn.click(); // Reopen camera
-        });
         
         // Continue to verification
         continueToVerifyBtn.addEventListener('click', function() {

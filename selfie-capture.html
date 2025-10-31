@@ -18,27 +18,37 @@
                     <p class="subtext">We'll use this to match your license and confirm it's you.</p>
                 </div>
                 
-                <div class="camera-container" id="cameraContainer">
-                    <div class="camera-placeholder" id="cameraPlaceholder">
-                        <i class="fas fa-camera"></i>
-                        <p>Camera preview will appear here</p>
+                <div class="camera-wrapper">
+                    <div class="camera-container" id="cameraContainer">
+                        <div class="camera-placeholder" id="cameraPlaceholder">
+                            <i class="fas fa-camera"></i>
+                            <p>Camera preview will appear here</p>
+                        </div>
+                        <video id="video" autoplay playsinline style="display: none;"></video>
+                        <canvas id="canvas" style="display: none;"></canvas>
+                        <div class="camera-overlay"></div>
                     </div>
-                    <video id="video" autoplay playsinline style="display: none;"></video>
-                    <canvas id="canvas" style="display: none;"></canvas>
                 </div>
                 
                 <div class="preview-container" id="selfiePreviewContainer" style="display: none;">
-                    <img id="selfiePreview" src="" alt="Selfie preview" class="preview-image">
-                    <button class="btn btn-secondary" id="retakeSelfie">Retake</button>
+                    <div class="preview-image-wrapper">
+                        <img id="selfiePreview" src="" alt="Selfie preview" class="preview-image">
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" id="retakeSelfie">
+                            <i class="fas fa-redo"></i> Retake
+                        </button>
+                        <button class="btn btn-primary" id="continueToVerifyBtn">
+                            Continue to Verification <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
                 
-                <button class="btn btn-primary" id="takePhotoBtn">
-                    <i class="fas fa-camera"></i> Open Camera
-                </button>
-                
-                <button class="btn btn-primary" id="continueToVerifyBtn" style="display: none;">
-                    Continue to Verification
-                </button>
+                <div class="camera-controls">
+                    <button class="btn btn-primary" id="takePhotoBtn">
+                        <i class="fas fa-camera"></i> Open Camera
+                    </button>
+                </div>
             </div>
         </div>
     </div>
