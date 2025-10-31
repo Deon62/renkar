@@ -25,12 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const carGrid = document.getElementById('carGrid');
     const searchInput = document.querySelector('.search-container input');
-    const modal = document.getElementById('rentalModal');
-    const closeModal = document.getElementById('closeModal');
-    const confirmRentalBtn = document.getElementById('confirmRental');
-    const successToast = document.getElementById('successToast');
     
-    let selectedCar = null;
+    // Remove modal-related code since we're not using it anymore
 
     // Display cars in the grid
     function displayCars(carsToDisplay) {
@@ -62,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="car-location">
                                 <i class="fas fa-map-marker-alt"></i> ${car.location}
                             </div>
-                            <button class="btn btn-primary rent-now" data-id="${car.id}">Rent Now</button>
+                            <a href="car-details.html?id=${car.id}" class="btn btn-outline view-more">View More</a>
                         </div>
                     </div>
                     <img src="${car.image}" alt="${car.name}" class="car-image-profile" onerror="this.src='https://via.placeholder.com/150?text=Car+Image';">
@@ -70,38 +66,13 @@ document.addEventListener('DOMContentLoaded', function() {
             carGrid.appendChild(carCard);
         });
         
-        // Add event listeners to rent buttons
-        document.querySelectorAll('.rent-now').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const carId = parseInt(e.target.getAttribute('data-id'));
-                selectedCar = cars.find(car => car.id === carId);
-                openModal(selectedCar);
-            });
-        });
+        // No need for event listeners since we're using links now
     }
 
-    // Open modal with car details
-    function openModal(car) {
-        document.getElementById('modalCarImage').style.backgroundImage = `url('${car.image}')`;
-        document.getElementById('modalCarName').textContent = car.name;
-        document.getElementById('modalCarLocation').textContent = car.location;
-        document.getElementById('modalCarPrice').textContent = `KES ${car.price.toLocaleString()} / day`;
-        modal.classList.add('show');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-    }
-
-    // Close modal
-    function closeModalFunc() {
-        modal.classList.remove('show');
-        document.body.style.overflow = ''; // Re-enable scrolling
-    }
-
-    // Show success toast
+    // Show success toast (keeping this in case it's used elsewhere)
     function showSuccessToast() {
-        successToast.classList.add('show');
-        setTimeout(() => {
-            successToast.classList.remove('show');
-        }, 3000);
+        // This function is kept for compatibility
+        console.log('Success toast would show here');
     }
 
     // Search functionality
@@ -116,26 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event Listeners
     searchInput.addEventListener('input', handleSearch);
-    
-    closeModal.addEventListener('click', closeModalFunc);
-    
-    confirmRentalBtn.addEventListener('click', () => {
-        // In a real app, you would handle the booking confirmation here
-        closeModalFunc();
-        showSuccessToast();
-        
-        // Redirect to home after a delay
-        setTimeout(() => {
-            window.location.href = 'index.html';
-        }, 2000);
-    });
-    
-    // Close modal when clicking outside
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModalFunc();
-        }
-    });
 
     // Initial display of cars
     displayCars(cars);

@@ -1,0 +1,469 @@
+/* Car Details Page Styles */
+:root {
+    --primary-color: #0A1D37;
+    --text-color: #1C1C1C;
+    --text-light: #666;
+    --border-radius: 12px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+/* Base Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    background-color: #fff;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Navbar */
+.navbar {
+    padding: 1rem 0;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.back-button {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.menu-toggle {
+    position: relative;
+    width: 24px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: var(--primary-color);
+    border-radius: 2px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.menu-toggle span:nth-child(1) {
+    top: 0px;
+}
+
+.menu-toggle span:nth-child(2) {
+    top: 8px;
+    width: 80%;
+    margin-left: 20%;
+}
+
+.menu-toggle span:nth-child(3) {
+    top: 16px;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    top: 8px;
+    transform: rotate(135deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    left: -60px;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    top: 8px;
+    transform: rotate(-135deg);
+}
+
+/* Carousel Section */
+.carousel-section {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.carousel-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    aspect-ratio: 4/3; /* Maintain aspect ratio */
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+    width: 100%;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Show full image without cropping */
+    display: block;
+    padding: 1rem;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+/* Add hover effect on desktop */
+@media (hover: hover) {
+    .carousel-slide img:hover {
+        transform: scale(1.02);
+    }
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 2;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.dot:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.dot.active {
+    background-color: var(--primary-color);
+    border-color: white;
+    transform: scale(1.2);
+}
+
+/* Car Info Section */
+.car-info {
+    padding: 1.5rem 1rem 6rem;
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    margin-top: -20px;
+    position: relative;
+    z-index: 1;
+}
+
+.car-header {
+    margin-bottom: 1.5rem;
+}
+
+.car-header h1 {
+    margin: 0 0 0.25rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.vendor {
+    color: var(--text-light);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.car-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.stat i {
+    color: var(--primary-color);
+}
+
+.car-description {
+    margin: 1.5rem 0;
+}
+
+.car-description h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.car-description p {
+    margin: 0;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Price Section */
+.price-section {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    width: auto;
+    padding: 0 1.5rem;
+    max-width: 500px;
+    width: calc(100% - 2rem);
+    pointer-events: none; /* Allow clicks to pass through when over content */
+}
+
+/* Make price info clickable */
+.price-info {
+    pointer-events: auto; /* Make sure the price section is still interactive */
+}
+
+.price-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    background: rgba(10, 29, 55, 0.5);
+    backdrop-filter: blur(8px) saturate(1.2);
+    -webkit-backdrop-filter: blur(8px) saturate(1.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    gap: 1.25rem;
+    max-width: 100%;
+    margin: 0 auto;
+    color: white;
+}
+
+.price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.3;
+    width: 100%;
+    padding: 0.5rem 0;
+}
+
+.amount {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    white-space: nowrap;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.period {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+    min-width: 200px;
+}
+
+.btn-primary {
+    background-color: white;
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 0.875rem 2.5rem;
+    width: 100%;
+    max-width: 280px;
+    height: 50px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    background-color: #f0f0f0;
+}
+
+/* Adjust car info padding to account for fixed price section */
+.car-info {
+    padding: 2rem 1.5rem 18rem; /* Increased bottom padding to allow scrolling past price section */
+    margin: 0 auto;
+    max-width: 800px;
+    min-height: 100vh; /* Ensure there's enough content to scroll */
+    position: relative;
+    z-index: 1; /* Ensure content stays below the fixed price section */
+}
+
+/* Add more spacing between car info sections */
+.car-stats {
+    margin: 2rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.car-description {
+    margin: 2.5rem 0;
+    padding: 0 0.5rem;
+}
+
+.car-description h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+/* Navbar spacing */
+.nav-content {
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.back-button {
+    padding: 0.75rem;
+    margin-left: -0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: rgba(10, 29, 55, 0.05);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(10, 29, 55, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(10, 29, 55, 0.25);
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    .carousel-track {
+        height: 400px;
+    }
+    
+    .car-info {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 2rem 0 6rem;
+    }
+    
+    .car-header h1 {
+        font-size: 2rem;
+    }
+    
+    .price-section {
+        padding: 1.25rem 0;
+    }
+    
+    .btn {
+        padding: 0.875rem 2rem;
+    }
+}
+
+/* Animation for page transitions */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.car-details {
+    animation: fadeIn 0.3s ease-out;
+}

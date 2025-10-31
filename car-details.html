@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details | Renkar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="car-details.css">
+    <style>
+        /* Loading spinner */
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0A1D37;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Ensure images are properly sized */
+        .carousel-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div style="flex: 1;"></div> <!-- Spacer -->
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="car-details">
+        <!-- Carousel Section -->
+        <section class="carousel-section">
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Images will be added by JavaScript -->
+                </div>
+                <div class="carousel-dots" id="carouselDots">
+                    <!-- Dots will be added by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Car Info Card -->
+        <section class="car-info">
+            <div class="container">
+                <div class="car-header">
+                    <h1 id="carName">Toyota Axio</h1>
+                    <p class="vendor">By <span id="vendorName">Premium Autos</span></p>
+                </div>
+                
+                <div class="car-stats">
+                    <div class="stat">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span id="carMileage">25,000 km</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-gas-pump"></i>
+                        <span id="carFuel">Petrol</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-users"></i>
+                        <span id="carSeats">5 Seats</span>
+                    </div>
+                </div>
+                
+                <div class="car-description">
+                    <h3>Description</h3>
+                    <p id="carDescription">A reliable and fuel-efficient sedan perfect for city driving and long trips. Features include automatic transmission, air conditioning, and modern infotainment system.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Price Section -->
+        <div class="price-section">
+            <div class="container">
+                <div class="price-info">
+                    <div class="price">
+                        <span class="amount" id="carPrice">KSh 2,500</span>
+                        <span class="period">/ day</span>
+                    </div>
+                    <button class="btn btn-primary" id="proceedToRent">Proceed to Rent</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="car-details.js"></script>
+</body>
+</html>
