@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Renkar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <button class="menu-toggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="checkout-container">
+        <div class="container">
+            <h1 class="page-title">Checkout</h1>
+            
+            <!-- Summary Card -->
+            <div class="summary-card">
+                <div class="summary-item">
+                    <span class="label">Car Name</span>
+                    <span class="value" id="carName">Toyota Axio</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Duration</span>
+                    <span class="value" id="duration">2 Days</span>
+                </div>
+                <div class="summary-item total">
+                    <span class="label">Total Amount</span>
+                    <span class="value" id="totalAmount">KSh 5,000</span>
+                </div>
+            </div>
+
+            <!-- Payment Method Selection -->
+            <div class="payment-section">
+                <label class="section-label">Choose Payment Method</label>
+                <div class="payment-options">
+                    <button class="payment-option" data-method="mpesa">
+                        <img src="assets/payments/mpesa.png" alt="M-Pesa">
+                    </button>
+                    <button class="payment-option" data-method="airtel">
+                        <img src="assets/payments/airtel.png" alt="Airtel Money">
+                    </button>
+                    <button class="payment-option" data-method="card">
+                        <div class="card-logos">
+                            <img src="assets/payments/visa.png" alt="Visa">
+                            <img src="assets/payments/master.png" alt="Mastercard">
+                        </div>
+                    </button>
+                    <button class="payment-option" data-method="wallet">
+                        <i class="fas fa-wallet"></i>
+                        <span>Wallet</span>
+                    </button>
+                    <button class="payment-option" data-method="cash">
+                        <img src="assets/payments/cash.png" alt="Cash">
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic Input Fields -->
+            <div class="payment-inputs" id="paymentInputs" style="display: none;">
+                <!-- Mobile Money Inputs -->
+                <div class="input-group mobile-inputs" id="mobileInputs" style="display: none;">
+                    <div class="form-field">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="tel" id="phoneNumber" placeholder="7XX XXX XXX">
+                    </div>
+                    <div class="form-field">
+                        <label for="confirmNumber">Confirm Number</label>
+                        <input type="tel" id="confirmNumber" placeholder="7XX XXX XXX">
+                    </div>
+                </div>
+
+                <!-- Card Inputs -->
+                <div class="input-group card-inputs" id="cardInputs" style="display: none;">
+                    <div class="form-field">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="expiryDate">Expiry Date</label>
+                            <input type="text" id="expiryDate" placeholder="MM/YY">
+                        </div>
+                        <div class="form-field">
+                            <label for="cvc">CVC</label>
+                            <input type="text" id="cvc" placeholder="123">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wallet Input -->
+                <div class="input-group wallet-input" id="walletInput" style="display: none;">
+                    <div class="form-field disabled-field">
+                        <label for="walletBalance">Wallet Balance</label>
+                        <input type="text" id="walletBalance" value="KSh 0.00" readonly>
+                    </div>
+                </div>
+
+                <!-- Cash Note -->
+                <div class="input-group cash-note" id="cashNote" style="display: none;">
+                    <p class="note-text">You'll pay upon pickup.</p>
+                </div>
+            </div>
+
+            <!-- Pay Section -->
+            <div class="pay-section">
+                <div class="readonly-amount">
+                    <label>Amount</label>
+                    <input type="text" id="amountDisplay" value="KSh 5,000" readonly>
+                </div>
+                
+                <button class="btn-pay" id="payButton">
+                    <span class="btn-text">Pay Now</span>
+                </button>
+            </div>
+
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage" style="display: none;">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Payment Successful!</h2>
+                <p>Your car booking is confirmed. Get ready to drive 🚗💨</p>
+                <a href="index.html" class="btn-home">Go Home</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="checkout.js"></script>
+</body>
+</html>
+
