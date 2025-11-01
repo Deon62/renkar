@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support | Renkar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="support.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="support-page">
+        <section class="chat-support">
+            <div class="chat-header">
+                <button class="btn-call" id="callSupport"><i class="fas fa-phone"></i> Call Renkar Care</button>
+                <button class="chip" id="handoffBtn"><i class="fas fa-user-plus"></i> Request manager</button>
+            </div>
+
+            <div class="chat-agent">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=160&q=80" alt="June from Renkar" class="agent-avatar">
+                <div>
+                    <h2>June • Customer Care</h2>
+                    <span class="status"><i class="fas fa-circle"></i> Typically responds in under 3 mins</span>
+                </div>
+            </div>
+
+            <div class="chat-thread" id="chatThread" aria-live="polite">
+                <div class="chat-message agent">
+                    <div class="bubble">
+                        Hi Jane! 👋 I’m June from Renkar. How can I help you today?
+                    </div>
+                    <time>08:41</time>
+                </div>
+                <div class="chat-message user">
+                    <div class="bubble">
+                        Hi June, I need to confirm if my driver for tomorrow is on schedule.
+                    </div>
+                    <time>08:42</time>
+                </div>
+                <div class="chat-message agent">
+                    <div class="bubble">
+                        Absolutely! Let me check the booking and update you right away.
+                    </div>
+                    <time>08:42</time>
+                </div>
+            </div>
+
+            <form class="chat-input" id="chatForm">
+                <button type="button" class="icon-button" id="attachBtn" aria-label="Attach file"><i class="fas fa-paperclip"></i></button>
+                <input type="text" id="chatMessage" name="message" placeholder="Type a message..." autocomplete="off" required>
+                <button type="submit" class="send-btn" aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
+            </form>
+            <p class="chat-typing" id="typingIndicator" hidden>June is typing...</p>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="booking.html" class="nav-item" aria-label="Home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="booking-history.html" class="nav-item" aria-label="Reservations">
+            <i class="fas fa-car"></i>
+            <span>Bookings</span>
+        </a>
+        <button class="nav-item more-toggle" id="supportMoreToggle" aria-label="More options">
+            <i class="fas fa-ellipsis-h"></i>
+            <span>More</span>
+        </button>
+    </nav>
+
+    <!-- Shared More Modal -->
+    <div class="more-modal" id="supportMoreModal" aria-hidden="true">
+        <div class="more-modal-overlay" id="supportMoreOverlay"></div>
+        <div class="more-modal-content" role="dialog" aria-modal="true" aria-labelledby="supportMoreTitle">
+            <div class="more-modal-header">
+                <h2 id="supportMoreTitle">More</h2>
+                <button class="more-modal-close" id="supportMoreClose" aria-label="Close more options">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="more-modal-list">
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="support.html" class="active">Customer Support</a></li>
+                <li><button type="button" id="supportLogout" class="logout-btn">Logout</button></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="support.js"></script>
+</body>
+</html>
