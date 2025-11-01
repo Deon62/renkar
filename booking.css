@@ -10,6 +10,40 @@
     --radius: 1rem;
 }
 
+.driver-card .car-specs {
+    gap: 0.6rem;
+}
+
+.driver-card .car-specs .spec-item {
+    background: rgba(10, 29, 55, 0.06);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.driver-card .car-location {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0.5rem;
+    color: var(--accent);
+}
+
+.driver-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.75rem;
+    font-weight: 600;
+    color: #f59e0b;
+}
+
+.driver-rating i {
+    color: #f59e0b;
+}
+
+.driver-card .view-more {
+    margin-top: 1rem;
+}
+
 /* Base Styles */
 * {
     margin: 0;
@@ -38,8 +72,7 @@ body {
 }
 
 .booking-header {
-    margin-bottom: 1.75rem;
-    padding-top: 0.5rem;
+    margin-bottom: 2rem;
     text-align: center;
 }
 
@@ -50,6 +83,38 @@ body {
     margin-bottom: 1.1rem;
 }
 
+.listing-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: rgba(10, 29, 55, 0.08);
+    padding: 0.35rem 0.5rem;
+    border-radius: 999px;
+    margin-bottom: 1.25rem;
+}
+
+.toggle-btn {
+    border: none;
+    background: transparent;
+    color: var(--accent);
+    font-weight: 600;
+    padding: 0.55rem 1.3rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toggle-btn.active {
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(10, 29, 55, 0.15);
+}
+
+.toggle-btn:focus-visible {
+    outline: 2px solid rgba(10, 29, 55, 0.35);
+    outline-offset: 3px;
+}
 
 .search-container {
     position: sticky;

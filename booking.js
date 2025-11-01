@@ -25,27 +25,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const carGrid = document.getElementById('carGrid');
     const searchInput = document.querySelector('.search-container input');
+    const toggleButtons = document.querySelectorAll('.toggle-btn');
+    const listingToggle = document.querySelector('.listing-toggle');
     const moreToggle = document.getElementById('moreToggle');
     const moreModal = document.getElementById('moreModal');
     const moreModalOverlay = document.getElementById('moreModalOverlay');
     const closeMoreModal = document.getElementById('closeMoreModal');
     const logoutButton = document.getElementById('logoutButton');
     
-    // Remove modal-related code since we're not using it anymore
+    const drivers = [
+        { id: 201, name: 'John Maina', location: 'Nairobi CBD', rate: 1800, experience: '5 yrs experience', vehicle: 'Toyota Axio', rating: 4.9 },
+        { id: 202, name: 'Sarah Wanjiku', location: 'Westlands', rate: 2000, experience: '7 yrs experience', vehicle: 'Nissan Teana', rating: 4.8 },
+        { id: 203, name: 'Peter Otieno', location: 'Kilimani', rate: 2200, experience: '6 yrs experience', vehicle: 'Subaru Forester', rating: 4.7 },
+        { id: 204, name: 'Brenda Chebet', location: 'Karen', rate: 2500, experience: '9 yrs experience', vehicle: 'Toyota Prado', rating: 5.0 },
+        { id: 205, name: 'Kevin Mwangi', location: 'Thika Road', rate: 1700, experience: '4 yrs experience', vehicle: 'Mazda Demio', rating: 4.6 }
+    ];
+
+    let activeMode = 'cars';
 
     // Display cars in the grid
-    function displayCars(carsToDisplay) {
+    function renderCars(carsToDisplay) {
         carGrid.innerHTML = '';
-        
+
         if (carsToDisplay.length === 0) {
             carGrid.innerHTML = '<p class="no-results">No cars found matching your search.</p>';
             return;
         }
-        
+
         carsToDisplay.forEach(car => {
-            const carCard = document.createElement('div');
-            carCard.className = 'car-card';
-            carCard.innerHTML = `
+            const card = document.createElement('div');
+            card.className = 'car-card';
+            card.innerHTML = `
                 <div class="car-card-content">
                     <div class="car-info">
                         <div class="car-details">
@@ -68,10 +78,48 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <img src="${car.image}" alt="${car.name}" class="car-image-profile" onerror="this.src='https://via.placeholder.com/150?text=Car+Image';">
                 </div>`;
-            carGrid.appendChild(carCard);
+            carGrid.appendChild(card);
         });
-        
-        // No need for event listeners since we're using links now
+    }
+
+    function renderDrivers(driversToDisplay) {
+        carGrid.innerHTML = '';
+
+        if (driversToDisplay.length === 0) {
+            carGrid.innerHTML = '<p class="no-results">No drivers found matching your search.</p>';
+            return;
+        }
+
+        driversToDisplay.forEach(driver => {
+            const card = document.createElement('div');
+            card.className = 'car-card driver-card';
+            card.innerHTML = `
+                <div class="car-card-content">
+                    <div class="car-info">
+                        <div class="car-details">
+                            <div class="car-header">
+                                <h3 class="car-name">${driver.name}</h3>
+                                <div class="car-price">
+                                    KES ${driver.rate.toLocaleString()}<span>/day</span>
+                                </div>
+                            </div>
+                            <div class="car-specs">
+                                <span class="spec-item"><i class="fas fa-map-marker-alt"></i> ${driver.location}</span>
+                                <span class="spec-item"><i class="fas fa-id-card"></i> ${driver.experience}</span>
+                            </div>
+                            <div class="car-location">
+                                <i class="fas fa-car"></i> Vehicle: ${driver.vehicle}
+                            </div>
+                            <div class="driver-rating">
+                                <i class="fas fa-star"></i> ${driver.rating.toFixed(1)} rating
+                            </div>
+                            <button class="btn btn-outline view-more" data-driver-id="${driver.id}">Hire Driver</button>
+                        </div>
+                    </div>
+                    <img src="https://i.pravatar.cc/150?u=driver-${driver.id}" alt="${driver.name}" class="car-image-profile" onerror="this.src='https://via.placeholder.com/150?text=Driver';">
+                </div>`;
+            carGrid.appendChild(card);
+        });
     }
 
     // Show success toast (keeping this in case it's used elsewhere)
@@ -83,15 +131,39 @@ document.addEventListener('DOMContentLoaded', function() {
     // Search functionality
     function handleSearch() {
         const searchTerm = searchInput.value.toLowerCase();
-        const filteredCars = cars.filter(car => 
-            car.name.toLowerCase().includes(searchTerm) || 
-            car.location.toLowerCase().includes(searchTerm)
-        );
-        displayCars(filteredCars);
+
+        if (activeMode === 'cars') {
+            const filteredCars = cars.filter(car => 
+                car.name.toLowerCase().includes(searchTerm) || 
+                car.location.toLowerCase().includes(searchTerm)
+            );
+            renderCars(filteredCars);
+        } else {
+            const filteredDrivers = drivers.filter(driver => 
+                driver.name.toLowerCase().includes(searchTerm) || 
+                driver.location.toLowerCase().includes(searchTerm) || 
+                driver.vehicle.toLowerCase().includes(searchTerm)
+            );
+            renderDrivers(filteredDrivers);
+        }
     }
 
     // Event Listeners
     searchInput.addEventListener('input', handleSearch);
+
+    toggleButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            if (button.classList.contains('active')) return;
+
+            toggleButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            toggleButtons.forEach(btn => btn.setAttribute('aria-selected', btn === button ? 'true' : 'false'));
+
+            activeMode = button.dataset.mode;
+            handleSearch();
+        });
+    });
 
     // More modal handlers
     function openMoreModal() {
@@ -124,5 +196,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Initial display of cars
-    displayCars(cars);
+    renderCars(cars);
 });
