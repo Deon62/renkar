@@ -6,92 +6,103 @@
     <title>Car Details | Renkar</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="car-details.css">
-    <style>
-        /* Loading spinner */
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #0A1D37;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Ensure images are properly sized */
-        .carousel-slide img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Main Content -->
-    <main class="car-details">
-        <div class="container">
-            <!-- Carousel Section -->
-            <section class="carousel-section">
-                <div class="carousel-container">
-                    <div class="carousel-track" id="carouselTrack">
-                        <!-- Images will be added by JavaScript -->
-                    </div>
-                    <div class="carousel-dots" id="carouselDots">
-                        <!-- Dots will be added by JavaScript -->
-                    </div>
-                </div>
-            </section>
-        </div>
+    <main class="car-page">
+        <header class="car-header">
+            <button class="header-btn" id="backBtn" aria-label="Go back">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="header-info">
+                <h1 id="carName">BMW 3 Series (2023)</h1>
+                <p id="vendorName">Executive Line</p>
+            </div>
+            <button class="header-btn" id="favoriteBtn" aria-label="Add to favorites">
+                <i class="far fa-heart"></i>
+            </button>
+        </header>
 
-        <!-- Car Info Card -->
-        <section class="car-info">
-            <div class="container">
-                <div class="car-header">
-                    <h1 id="carName">Toyota Axio</h1>
-                    <p class="vendor">By <span id="vendorName">Premium Autos</span></p>
-                </div>
-                
-                <div class="car-stats">
-                    <div class="stat">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <span id="carMileage">25,000 km</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-gas-pump"></i>
-                        <span id="carFuel">Petrol</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-users"></i>
-                        <span id="carSeats">5 Seats</span>
-                    </div>
-                </div>
-                
-                <div class="car-description">
-                    <h3>Description</h3>
-                    <p id="carDescription">A reliable and fuel-efficient sedan perfect for city driving and long trips. Features include automatic transmission, air conditioning, and modern infotainment system.</p>
-                </div>
+        <section class="carousel-wrapper">
+            <div class="carousel" id="carCarousel">
+                <div class="carousel-track" id="carouselTrack"></div>
+            </div>
+            <div class="carousel-indicators" id="carouselDots"></div>
+        </section>
+
+        <section class="quick-facts" aria-label="Car quick facts">
+            <div class="fact">
+                <i class="fas fa-users"></i>
+                <span>Seats</span>
+                <strong id="carSeats">5</strong>
+            </div>
+            <div class="fact">
+                <i class="fas fa-gas-pump"></i>
+                <span>Fuel</span>
+                <strong id="carFuel">Petrol</strong>
+            </div>
+            <div class="fact">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Mileage</span>
+                <strong id="carMileage">32,000 km</strong>
+            </div>
+            <div class="fact">
+                <i class="fas fa-palette"></i>
+                <span>Color</span>
+                <strong id="carColor">Black</strong>
+            </div>
+            <div class="fact">
+                <i class="fas fa-cogs"></i>
+                <span>Engine</span>
+                <strong id="carEngine">2000cc</strong>
             </div>
         </section>
 
-        <!-- Price Section -->
-        <div class="price-section">
-            <div class="container">
-                <div class="price-info">
-                    <div class="price">
-                        <span class="amount" id="carPrice">KSh 2,500</span>
-                        <span class="period">/ day</span>
-                    </div>
-                    <button class="btn btn-primary" id="proceedToRent">Proceed to Rent</button>
-                </div>
+        <section class="booking-card">
+            <h2>Schedule your ride</h2>
+            <form class="booking-form" id="bookingForm">
+                <label class="input-field">
+                    <span>Pickup Date</span>
+                    <input type="date" id="pickupDate" placeholder="Select pickup date" required>
+                </label>
+                <label class="input-field">
+                    <span>Return Date</span>
+                    <input type="date" id="returnDate" placeholder="Select return date" required>
+                </label>
+                <label class="input-field">
+                    <span>Pickup Location</span>
+                    <select id="pickupLocation" required>
+                        <option value="">Select pickup area</option>
+                        <option value="wilson">Wilson Airport</option>
+                        <option value="westlands">Westlands</option>
+                        <option value="cbd">Nairobi CBD</option>
+                        <option value="jkia">JKIA</option>
+                    </select>
+                </label>
+                <label class="input-field">
+                    <span>Return Location</span>
+                    <select id="returnLocation" required>
+                        <option value="">Select return area</option>
+                        <option value="wilson">Wilson Airport</option>
+                        <option value="westlands">Westlands</option>
+                        <option value="cbd">Nairobi CBD</option>
+                        <option value="jkia">JKIA</option>
+                    </select>
+                </label>
+            </form>
+        </section>
+
+        <section class="pricing" aria-label="Pricing summary">
+            <div class="pricing-row">
+                <span>Estimated Total</span>
+                <strong id="estimatedTotal">KES 5,500</strong>
             </div>
-        </div>
+            <p class="pricing-note">Price may vary based on duration and distance.</p>
+        </section>
     </main>
+
+    <button class="checkout-btn" id="proceedToRent">Proceed to Checkout</button>
 
     <script src="car-details.js"></script>
 </body>

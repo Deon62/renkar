@@ -5,19 +5,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Sample car data - in a real app, this would come from an API
     const cars = [
-        { 
-            id: 1, 
-            name: 'Toyota Axio', 
-            vendor: 'Premium Autos',
-            price: 2500,
+        {
+            id: 1,
+            name: 'BMW 3 Series (2023)',
+            vendor: 'Executive Line',
+            price: 5500,
             image: 'assets/cars/r1.jpg',
-            type: 'Sedan',
-            seats: 5, 
-            fuel: 'Petrol', 
-            mileage: '25,000 km', 
-            description: 'A reliable and fuel-efficient sedan perfect for city driving and long trips. Features include automatic transmission, air conditioning, and modern infotainment system.'
-        },
-        // Add more cars as needed
+            seats: 5,
+            fuel: 'Petrol',
+            mileage: '32,000 km',
+            color: 'Black',
+            engine: '2000cc'
+        }
     ];
 
     // Find the selected car or use the first one as default
@@ -67,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
             path: car.image
         };
         let carImages = [currentCarImage, ...getRandomCarImages(3, car.image)];
-        console.log('Car images to load:', carImages);
         
         // Create slides
         carImages.forEach((imgSrc, index) => {
@@ -77,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const img = document.createElement('img');
             img.src = imgSrc.path;
-            console.log('Loading image:', img.src);
             img.alt = `${car.name} - View ${index + 1}`;
             img.loading = 'lazy';
             
@@ -93,12 +90,14 @@ document.addEventListener('DOMContentLoaded', function() {
             slide.appendChild(img);
             track.appendChild(slide);
             
-            // Create dot
+            // Create indicator
             if (dotsContainer) {
-                const dot = document.createElement('div');
-                dot.className = `dot${index === 0 ? ' active' : ''}`;
-                dot.addEventListener('click', () => goToSlide(index));
-                dotsContainer.appendChild(dot);
+                const indicator = document.createElement('button');
+                indicator.type = 'button';
+                indicator.className = index === 0 ? 'active' : '';
+                indicator.setAttribute('aria-label', `Go to slide ${index + 1}`);
+                indicator.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(indicator);
             }
         });
         
@@ -112,8 +111,8 @@ document.addEventListener('DOMContentLoaded', function() {
             track.style.transform = `translateX(${offset}%)`;
             
             // Update active dot
-            const dots = document.querySelectorAll('.dot');
-            dots.forEach((dot, i) => {
+            const indicators = dotsContainer?.querySelectorAll('button') || [];
+            indicators.forEach((dot, i) => {
                 dot.classList.toggle('active', i === currentSlide);
             });
         }
@@ -175,13 +174,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update car details in the UI
     function updateCarDetails() {
-        document.getElementById('carName').textContent = car.name;
-        document.getElementById('vendorName').textContent = car.vendor || 'Premium Autos';
-        document.getElementById('carMileage').textContent = car.mileage;
-        document.getElementById('carFuel').textContent = car.fuel;
-        document.getElementById('carSeats').textContent = `${car.seats} Seats`;
-        document.getElementById('carDescription').textContent = car.description;
-        document.getElementById('carPrice').textContent = `KSh ${car.price.toLocaleString()}`;
+        const nameEl = document.getElementById('carName');
+        const vendorEl = document.getElementById('vendorName');
+        const seatsEl = document.getElementById('carSeats');
+        const fuelEl = document.getElementById('carFuel');
+        const mileageEl = document.getElementById('carMileage');
+        const colorEl = document.getElementById('carColor');
+        const engineEl = document.getElementById('carEngine');
+        const totalEl = document.getElementById('estimatedTotal');
+
+        if (nameEl) nameEl.textContent = car.name;
+        if (vendorEl) vendorEl.textContent = car.vendor || '';
+        if (seatsEl) seatsEl.textContent = car.seats;
+        if (fuelEl) fuelEl.textContent = car.fuel;
+        if (mileageEl) mileageEl.textContent = car.mileage;
+        if (colorEl) colorEl.textContent = car.color || '';
+        if (engineEl) engineEl.textContent = car.engine || '';
+        if (totalEl) totalEl.textContent = `KES ${car.price.toLocaleString()}`;
     }
 
     // Initialize the page
@@ -191,23 +200,28 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Set up event listeners
         const proceedBtn = document.getElementById('proceedToRent');
-        if (proceedBtn) {
-            proceedBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                // In a real app, you would redirect to the checkout page with the car ID
-                window.location.href = `checkout.html?carId=${car.id}`;
-            });
-        }
-        
-        // Menu toggle functionality
-        const menuToggle = document.getElementById('menuToggle');
-        if (menuToggle) {
-            menuToggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                // Add menu toggle functionality here
-                console.log('Menu toggled');
-            });
-        }
+        proceedBtn?.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = `checkout.html?carId=${car.id}`;
+        });
+
+        const backBtn = document.getElementById('backBtn');
+        backBtn?.addEventListener('click', () => {
+            window.history.back();
+        });
+
+        const favoriteBtn = document.getElementById('favoriteBtn');
+        favoriteBtn?.addEventListener('click', () => {
+            favoriteBtn.classList.toggle('active');
+            const icon = favoriteBtn.querySelector('i');
+            if (favoriteBtn.classList.contains('active')) {
+                icon?.classList.remove('far');
+                icon?.classList.add('fas');
+            } else {
+                icon?.classList.remove('fas');
+                icon?.classList.add('far');
+            }
+        });
     }
 
     // Start the application
