@@ -14,9 +14,23 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <button class="menu-toggle" aria-label="Menu">
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
                 <i class="fas fa-bars"></i>
             </button>
+            <div class="nav-panel" id="navPanel">
+                <button class="close-menu" id="closeMenu" aria-label="Close menu">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="nav-links" id="navLinks">
+                    <a href="join-driver.html" class="nav-link">Join as Driver</a>
+                    <a href="join-owner.html" class="nav-link">Join as Car Owner</a>
+                    <a href="join-customer.html" class="nav-link">Join as Customer</a>
+                </div>
+                <div class="nav-footer">
+                    <a href="login.html" class="nav-login-btn">Login</a>
+                </div>
+            </div>
+            <div class="overlay" id="overlay"></div>
         </div>
     </nav>
 
@@ -246,5 +260,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="js/nav.js"></script>
 </body>
 </html>

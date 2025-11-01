@@ -10,18 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="booking-nav">
-        <div class="container">
-            <div class="nav-content">
-                <a href="index.html" class="brand">Renkar</a>
-                <button class="menu-toggle" aria-label="Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
-
     <!-- Main Content -->
     <main class="booking-container">
         <div class="container">
@@ -57,6 +45,25 @@
         </div>
     </div>
 
+    <!-- More Options Modal -->
+    <div class="more-modal" id="moreModal" aria-hidden="true">
+        <div class="more-modal-overlay" id="moreModalOverlay"></div>
+        <div class="more-modal-content" role="dialog" aria-modal="true" aria-labelledby="moreModalTitle">
+            <div class="more-modal-header">
+                <h2 id="moreModalTitle">More</h2>
+                <button class="more-modal-close" id="closeMoreModal" aria-label="Close more options">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="more-modal-list">
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="support.html">Customer Support</a></li>
+                <li><button type="button" class="logout-btn" id="logoutButton">Logout</button></li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Success Toast -->
     <div class="toast" id="successToast">
         <div class="toast-content">
@@ -64,6 +71,22 @@
             <span>Car booked successfully!</span>
         </div>
     </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="booking.html" class="nav-item active" aria-label="Home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="booking-history.html" class="nav-item" aria-label="Booking history">
+            <i class="fas fa-car"></i>
+            <span>Bookings</span>
+        </a>
+        <button class="nav-item more-toggle" id="moreToggle" aria-label="More options">
+            <i class="fas fa-ellipsis-h"></i>
+            <span>More</span>
+        </button>
+    </nav>
 
     <script src="booking.js"></script>
 </body>

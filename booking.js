@@ -25,6 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const carGrid = document.getElementById('carGrid');
     const searchInput = document.querySelector('.search-container input');
+    const moreToggle = document.getElementById('moreToggle');
+    const moreModal = document.getElementById('moreModal');
+    const moreModalOverlay = document.getElementById('moreModalOverlay');
+    const closeMoreModal = document.getElementById('closeMoreModal');
+    const logoutButton = document.getElementById('logoutButton');
     
     // Remove modal-related code since we're not using it anymore
 
@@ -87,6 +92,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event Listeners
     searchInput.addEventListener('input', handleSearch);
+
+    // More modal handlers
+    function openMoreModal() {
+        if (!moreModal) return;
+        moreModal.classList.add('open');
+        document.body.classList.add('more-modal-open');
+        moreModal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeMoreModalHandler() {
+        if (!moreModal) return;
+        moreModal.classList.remove('open');
+        document.body.classList.remove('more-modal-open');
+        moreModal.setAttribute('aria-hidden', 'true');
+    }
+
+    moreToggle?.addEventListener('click', openMoreModal);
+    closeMoreModal?.addEventListener('click', closeMoreModalHandler);
+    moreModalOverlay?.addEventListener('click', closeMoreModalHandler);
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && moreModal?.classList.contains('open')) {
+            closeMoreModalHandler();
+        }
+    });
+
+    logoutButton?.addEventListener('click', () => {
+        closeMoreModalHandler();
+        alert('You have been logged out.');
+    });
 
     // Initial display of cars
     displayCars(cars);
