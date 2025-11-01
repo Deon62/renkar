@@ -556,6 +556,8 @@ body {
     text-decoration: none;
     cursor: pointer;
     transition: color 0.2s ease, transform 0.2s ease;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .bottom-nav .nav-item i {
@@ -578,12 +580,18 @@ body {
 }
 
 .bottom-nav .nav-item span {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     letter-spacing: 0.01em;
 }
 
 .bottom-nav .more-toggle {
     padding: 0;
+}
+
+.bottom-nav .nav-item:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
+    border-radius: 18px;
 }
 
 /* More Modal */
@@ -592,6 +600,12 @@ body {
     inset: 0;
     display: none;
     align-items: flex-end;
+    justify-content: center;
+    z-index: 1200;
+display: none;
+align-items: flex-end;
+justify-content: center;
+z-index: 1200;
     justify-content: center;
     z-index: 1200;
 }
@@ -660,7 +674,7 @@ body {
 .more-modal-list button {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 0.65rem 0;
     border: none;
     border-radius: 0;
@@ -671,11 +685,22 @@ body {
     transition: color 0.2s ease;
     width: 100%;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
 }
 
 .more-modal-list a:hover,
 .more-modal-list button:hover {
     color: #092a4d;
+}
+
+.more-modal-list a:focus,
+.more-modal-list button:focus,
+.more-modal-list a:focus-visible,
+.more-modal-list button:focus-visible {
+    outline: none;
+    color: #092a4d;
+    box-shadow: inset 0 -2px 0 rgba(10, 29, 55, 0.2);
 }
 
 .logout-btn {

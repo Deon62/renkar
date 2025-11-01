@@ -318,6 +318,21 @@ p {
     background-color: var(--primary);
 }
 
+.nav-link,
+.menu-toggle,
+.close-menu {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+.nav-link:focus-visible,
+.menu-toggle:focus-visible,
+.close-menu:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(10, 29, 55, 0.25);
+    border-radius: 12px;
+}
+
 .menu-toggle {
     background: none;
     border: none;
