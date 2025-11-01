@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | Renkar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="profile-page">
+        <section class="profile-card">
+            <div class="profile-photo">
+                <img src="https://i.pravatar.cc/180?u=renkar-user" alt="User avatar">
+                <button class="photo-edit" id="changePhoto" aria-label="Change photo">
+                    <i class="fas fa-camera"></i>
+                </button>
+            </div>
+            <div class="profile-info">
+                <h1>Jane Wambui</h1>
+                <p>Nairobi, Kenya</p>
+            </div>
+            <button class="btn-primary edit-profile-btn" id="editProfileBtn">
+                <i class="fas fa-pen"></i>
+                Edit Profile
+            </button>
+        </section>
+
+        <section class="profile-section">
+            <header>
+                <h2>Account Info</h2>
+            </header>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">Email</span>
+                    <span class="value">jane.wambui@renkar.com</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Phone</span>
+                    <span class="value">+254 712 345 678</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">License / ID</span>
+                    <span class="value status success"><i class="fas fa-check-circle"></i> Verified</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Address</span>
+                    <span class="value">Lenana Road, Kilimani</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="profile-section">
+            <header>
+                <h2>Stats</h2>
+            </header>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Cars Rented</span>
+                    <span class="stat-value">18</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Total Spent</span>
+                    <span class="stat-value">KES 152K</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Trips Completed</span>
+                    <span class="stat-value">21</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="profile-section">
+            <header>
+                <h2>Payment & Wallet</h2>
+            </header>
+            <div class="payment-list">
+                <div class="payment-item">
+                    <div class="payment-info">
+                        <span class="icon bg-mpesa"><i class="fas fa-wallet"></i></span>
+                        <div>
+                            <p>M-Pesa</p>
+                            <span class="muted">Safaricom - 07•• ••5 443</span>
+                        </div>
+                    </div>
+                    <button class="chip">Default</button>
+                </div>
+                <div class="payment-item">
+                    <div class="payment-info">
+                        <span class="icon bg-card"><i class="fas fa-credit-card"></i></span>
+                        <div>
+                            <p>Visa ending 2389</p>
+                            <span class="muted">Expires 01/27</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-secondary add-payment-btn" id="addPaymentBtn">
+                <i class="fas fa-plus"></i>
+                Add Payment Method
+            </button>
+        </section>
+
+        <section class="profile-section">
+            <header>
+                <h2>Settings</h2>
+            </header>
+            <ul class="settings-list">
+                <li><button><span><i class="fas fa-bell"></i> Notifications</span><i class="fas fa-chevron-right"></i></button></li>
+                <li><button><span><i class="fas fa-shield-alt"></i> Privacy</span><i class="fas fa-chevron-right"></i></button></li>
+                <li><button><span><i class="fas fa-life-ring"></i> Help Center</span><i class="fas fa-chevron-right"></i></button></li>
+                <li><button id="logoutBtn"><span><i class="fas fa-sign-out-alt"></i> Logout</span><i class="fas fa-chevron-right"></i></button></li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="editProfileModal" aria-hidden="true">
+        <div class="modal-overlay" data-close></div>
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="editProfileTitle">
+            <header class="modal-header">
+                <h2 id="editProfileTitle">Edit Profile</h2>
+                <button class="modal-close" data-close aria-label="Close modal"><i class="fas fa-times"></i></button>
+            </header>
+            <form class="modal-body" id="editProfileForm">
+                <label>
+                    <span>Name</span>
+                    <input type="text" value="Jane Wambui" required>
+                </label>
+                <label>
+                    <span>Email</span>
+                    <input type="email" value="jane.wambui@renkar.com" required>
+                </label>
+                <label>
+                    <span>Phone</span>
+                    <input type="tel" value="0712345678" required>
+                </label>
+                <label>
+                    <span>Location</span>
+                    <input type="text" value="Nairobi, Kenya">
+                </label>
+                <button type="submit" class="btn-primary full-width">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Payment Modal -->
+    <div class="modal" id="paymentModal" aria-hidden="true">
+        <div class="modal-overlay" data-close></div>
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="paymentModalTitle">
+            <header class="modal-header">
+                <h2 id="paymentModalTitle">Add Payment Method</h2>
+                <button class="modal-close" data-close aria-label="Close modal"><i class="fas fa-times"></i></button>
+            </header>
+            <form class="modal-body" id="paymentForm">
+                <label>
+                    <span>Payment Type</span>
+                    <select required>
+                        <option value="">Select option</option>
+                        <option value="mpesa">M-Pesa</option>
+                        <option value="airtel">Airtel Money</option>
+                        <option value="card">Card</option>
+                    </select>
+                </label>
+                <label>
+                    <span>Account / Phone Number</span>
+                    <input type="text" placeholder="Enter number" required>
+                </label>
+                <button type="submit" class="btn-primary full-width">Link Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Logout Confirmation -->
+    <div class="modal" id="logoutModal" aria-hidden="true">
+        <div class="modal-overlay" data-close></div>
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="logoutModalTitle">
+            <header class="modal-header">
+                <h2 id="logoutModalTitle">Logout?</h2>
+                <button class="modal-close" data-close aria-label="Close modal"><i class="fas fa-times"></i></button>
+            </header>
+            <div class="modal-body">
+                <p>Are you sure you want to logout from Renkar?</p>
+                <div class="modal-actions">
+                    <button class="btn-secondary" data-close>Cancel</button>
+                    <button class="btn-primary" id="confirmLogout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="booking.html" class="nav-item" aria-label="Home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="booking-history.html" class="nav-item" aria-label="Reservations">
+            <i class="fas fa-car"></i>
+            <span>Bookings</span>
+        </a>
+        <button class="nav-item more-toggle" id="profileMoreToggle" aria-label="More options">
+            <i class="fas fa-ellipsis-h"></i>
+            <span>More</span>
+        </button>
+    </nav>
+
+    <!-- Shared More Modal -->
+    <div class="more-modal" id="profileMoreModal" aria-hidden="true">
+        <div class="more-modal-overlay" id="profileMoreOverlay"></div>
+        <div class="more-modal-content" role="dialog" aria-modal="true" aria-labelledby="profileMoreTitle">
+            <div class="more-modal-header">
+                <h2 id="profileMoreTitle">More</h2>
+                <button class="more-modal-close" id="profileMoreClose" aria-label="Close more options">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="more-modal-list">
+                <li><a href="profile.html" class="active">Profile</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="support.html">Customer Support</a></li>
+                <li><button type="button" id="moreLogout" class="logout-btn">Logout</button></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="profile.js"></script>
+</body>
+</html>
