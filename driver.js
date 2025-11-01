@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         profileButton?.addEventListener('click', () => {
             closeModal();
-            alert('Profile management coming soon.');
+            window.location.href = 'driver-profile.html';
         });
 
         financesButton?.addEventListener('click', () => {
