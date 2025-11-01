@@ -69,15 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     tabButtons.forEach((button, index) => {
-        const target = button.dataset.target;
-
-        if (target) {
-            button.addEventListener('click', () => {
-                window.location.href = `driver.html#${target}`;
-            });
-            if (index === 0) {
-                button.setAttribute('aria-selected', 'false');
-            }
+        button.addEventListener('click', () => setActiveTab(button));
+        if (index === 0) {
+            setActiveTab(button);
         }
     });
 

@@ -215,12 +215,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         profileButton?.addEventListener('click', () => {
             closeModal();
-            window.location.href = 'driver-profile.html';
+            alert('Profile management coming soon.');
         });
 
         financesButton?.addEventListener('click', () => {
             closeModal();
-            alert('Finances overview coming soon.');
+            window.location.href = 'driver-finances.html';
         });
 
         logoutButton?.addEventListener('click', () => {
