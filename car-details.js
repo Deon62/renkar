@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const backBtn = document.getElementById('backBtn');
         backBtn?.addEventListener('click', () => {
-            window.history.back();
+            window.location.href = 'booking.html';
         });
 
         const favoriteBtn = document.getElementById('favoriteBtn');
