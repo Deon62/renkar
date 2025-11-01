@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
             fuel: 'Petrol',
             mileage: '32,000 km',
             color: 'Black',
-            engine: '2000cc'
+            engine: '2000cc',
+            description: 'A refined sedan combining sport handling with executive comfort. Expect adaptive cruise control, leather interiors, Apple CarPlay, and full safety suite for city and upcountry drives.'
         }
     ];
 
@@ -181,6 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const mileageEl = document.getElementById('carMileage');
         const colorEl = document.getElementById('carColor');
         const engineEl = document.getElementById('carEngine');
+        const descriptionEl = document.getElementById('carDescriptionText');
         const totalEl = document.getElementById('estimatedTotal');
 
         if (nameEl) nameEl.textContent = car.name;
@@ -190,6 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (mileageEl) mileageEl.textContent = car.mileage;
         if (colorEl) colorEl.textContent = car.color || '';
         if (engineEl) engineEl.textContent = car.engine || '';
+        if (descriptionEl) descriptionEl.textContent = car.description || '';
         if (totalEl) totalEl.textContent = `KES ${car.price.toLocaleString()}`;
     }
 
@@ -221,6 +224,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon?.classList.remove('fas');
                 icon?.classList.add('far');
             }
+        });
+
+        const descriptionToggle = document.getElementById('descriptionToggle');
+        const descriptionContent = document.getElementById('carDescription');
+        const descriptionCard = document.querySelector('.description-card');
+        descriptionToggle?.addEventListener('click', () => {
+            const isExpanded = descriptionToggle.getAttribute('aria-expanded') === 'true';
+            descriptionToggle.setAttribute('aria-expanded', String(!isExpanded));
+            descriptionContent?.toggleAttribute('hidden');
+            descriptionCard?.classList.toggle('open', !isExpanded);
         });
     }
 

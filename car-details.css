@@ -168,6 +168,63 @@ body {
     color: var(--car-primary);
 }
 
+.description-card {
+    background: var(--car-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--car-shadow);
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.description-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    color: inherit;
+}
+
+.description-toggle .label {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(10, 29, 55, 0.5);
+    margin-bottom: 0.35rem;
+}
+
+.description-toggle h2 {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--car-primary);
+}
+
+.description-toggle i {
+    font-size: 1rem;
+    color: rgba(10, 29, 55, 0.4);
+    transition: transform 0.2s ease;
+}
+
+.description-card.open .description-toggle i {
+    transform: rotate(180deg);
+}
+
+.description-content {
+    border-top: 1px solid rgba(10, 29, 55, 0.08);
+    padding-top: 0.75rem;
+    color: var(--car-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
 .booking-card {
     background: var(--car-card);
     border-radius: var(--radius-lg);
