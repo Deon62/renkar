@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         profileButton?.addEventListener('click', () => {
             closeModal();
-            alert('Profile management coming soon.');
+            window.location.href = 'driver-profile.html';
         });
 
         financesButton?.addEventListener('click', () => {
@@ -230,7 +230,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    const applyInitialTab = () => {
+        const params = new URLSearchParams(window.location.search);
+        const tabParam = params.get('tab');
+
+        if (tabParam === 'lastBookings') {
+            const lastBookingsButton = document.getElementById('tabLastBookings');
+            if (lastBookingsButton) {
+                setActiveTab(lastBookingsButton);
+                return;
+            }
+        }
+
+        const openRequestsButton = document.getElementById('tabOpenRequests');
+        if (tabParam === 'openRequests' && openRequestsButton) {
+            setActiveTab(openRequestsButton);
+            return;
+        }
+
+        if (tabButtons.length) {
+            setActiveTab(tabButtons[0]);
+        }
+    };
+
     renderOpenRequests(openRequests);
     renderLastBookings(lastBookings);
     attachEvents();
+    applyInitialTab();
 });

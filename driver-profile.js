@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.driver-nav-item[data-target]');
     const tabPanels = document.querySelectorAll('.tab-panel');
     const tabMore = document.getElementById('tabMore');
+    const tabOpenRequests = document.getElementById('tabOpenRequests');
+    const tabLastBookings = document.getElementById('tabLastBookings');
     const profileButton = document.getElementById('profileButton');
     const financesButton = document.getElementById('financesButton');
 
@@ -68,12 +70,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    tabButtons.forEach((button, index) => {
-        button.addEventListener('click', () => setActiveTab(button));
-        if (index === 0) {
-            setActiveTab(button);
+    if (tabPanels.length) {
+        tabButtons.forEach((button, index) => {
+            button.addEventListener('click', () => setActiveTab(button));
+            if (index === 0) {
+                setActiveTab(button);
+            }
+        });
+    } else {
+        tabMore?.classList.add('active');
+        tabMore?.setAttribute('aria-selected', 'true');
+    }
+
+    const navigateToDriver = (tab) => {
+        const params = new URLSearchParams();
+        if (tab) {
+            params.set('tab', tab);
         }
-    });
+        const query = params.toString();
+        window.location.href = `driver.html${query ? `?${query}` : ''}`;
+    };
+
+    tabOpenRequests?.addEventListener('click', () => navigateToDriver('openRequests'));
+    tabLastBookings?.addEventListener('click', () => navigateToDriver('lastBookings'));
 
     const handleLogout = () => {
         closeMoreModal();
@@ -91,6 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     financesButton?.addEventListener('click', () => {
         closeMoreModal();
-        alert('Finances overview coming soon.');
+        window.location.href = 'driver-finances.html';
     });
 });

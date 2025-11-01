@@ -13,6 +13,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const withdrawClose = document.getElementById('withdrawClose');
     const withdrawForm = document.getElementById('withdrawForm');
 
+    const tabOpenRequests = document.getElementById('tabOpenRequests');
+    const tabLastBookings = document.getElementById('tabLastBookings');
+    const tabMore = document.getElementById('tabMore');
+
+    const driverMoreModal = document.getElementById('driverMoreModal');
+    const driverModalOverlay = document.getElementById('driverModalOverlay');
+    const driverCloseMore = document.getElementById('driverCloseMore');
+    const profileButton = document.getElementById('profileButton');
+    const financesButton = document.getElementById('financesButton');
+    const logoutButton = document.getElementById('logoutButton');
+
     const financesState = {
         currentBalance: 42500,
         totalEarnings: 92400,
@@ -102,6 +113,29 @@ document.addEventListener('DOMContentLoaded', () => {
         viewAllButton.hidden = false;
     };
 
+    const navigateToDriver = (tab) => {
+        const params = new URLSearchParams();
+        if (tab) {
+            params.set('tab', tab);
+        }
+        const query = params.toString();
+        window.location.href = `driver.html${query ? `?${query}` : ''}`;
+    };
+
+    const openDriverMoreModal = () => {
+        if (!driverMoreModal) return;
+        driverMoreModal.classList.add('open');
+        driverMoreModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('driver-modal-open');
+    };
+
+    const closeDriverMoreModal = () => {
+        if (!driverMoreModal) return;
+        driverMoreModal.classList.remove('open');
+        driverMoreModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('driver-modal-open');
+    };
+
     const openWithdrawModal = () => {
         withdrawModal.classList.add('open');
         withdrawModal.setAttribute('aria-hidden', 'false');
@@ -157,24 +191,31 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const handleKeydown = (event) => {
-        if (event.key === 'Escape' && withdrawModal.classList.contains('open')) {
+        if (event.key !== 'Escape') return;
+
+        if (withdrawModal.classList.contains('open')) {
             closeWithdrawModal();
+        }
+
+        if (driverMoreModal?.classList.contains('open')) {
+            closeDriverMoreModal();
         }
     };
 
-    const attachModalGestures = () => {
-        const modalContent = withdrawModal.querySelector('.modal-content');
-        let startY = null;
+    const getClientY = (evt) => {
+        if (evt.touches && evt.touches.length) {
+            return evt.touches[0].clientY;
+        }
+        if (evt.changedTouches && evt.changedTouches.length) {
+            return evt.changedTouches[0].clientY;
+        }
+        return evt.clientY ?? null;
+    };
 
-        const getClientY = (evt) => {
-            if (evt.touches && evt.touches.length) {
-                return evt.touches[0].clientY;
-            }
-            if (evt.changedTouches && evt.changedTouches.length) {
-                return evt.changedTouches[0].clientY;
-            }
-            return evt.clientY ?? null;
-        };
+    const attachWithdrawModalGestures = () => {
+        const modalContent = withdrawModal.querySelector('.modal-content');
+        if (!modalContent) return;
+        let startY = null;
 
         const onPointerDown = (evt) => {
             startY = getClientY(evt);
@@ -195,6 +236,54 @@ document.addEventListener('DOMContentLoaded', () => {
         modalContent.addEventListener('touchend', onPointerUp, { passive: true });
     };
 
+    const attachDriverModalGestures = () => {
+        if (!driverMoreModal) return;
+        const modalContent = driverMoreModal.querySelector('.driver-modal-content');
+        if (!modalContent) return;
+
+        let startY = null;
+
+        const onPointerDown = (evt) => {
+            startY = getClientY(evt);
+        };
+
+        const onPointerUp = (evt) => {
+            if (startY == null) return;
+            const endY = getClientY(evt);
+            if (endY != null && endY - startY > 60) {
+                closeDriverMoreModal();
+            }
+            startY = null;
+        };
+
+        modalContent.addEventListener('pointerdown', onPointerDown);
+        modalContent.addEventListener('pointerup', onPointerUp);
+        modalContent.addEventListener('touchstart', onPointerDown, { passive: true });
+        modalContent.addEventListener('touchend', onPointerUp, { passive: true });
+    };
+
+    const attachNavigationListeners = () => {
+        tabOpenRequests?.addEventListener('click', () => navigateToDriver('openRequests'));
+        tabLastBookings?.addEventListener('click', () => navigateToDriver('lastBookings'));
+        tabMore?.addEventListener('click', openDriverMoreModal);
+
+        driverModalOverlay?.addEventListener('click', closeDriverMoreModal);
+        driverCloseMore?.addEventListener('click', closeDriverMoreModal);
+
+        profileButton?.addEventListener('click', () => {
+            closeDriverMoreModal();
+            window.location.href = 'driver-profile.html';
+        });
+
+        financesButton?.addEventListener('click', closeDriverMoreModal);
+
+        logoutButton?.addEventListener('click', () => {
+            closeDriverMoreModal();
+            alert('You have been logged out.');
+            window.location.href = 'index.html';
+        });
+    };
+
     withdrawButton.addEventListener('click', openWithdrawModal);
     withdrawOverlay.addEventListener('click', closeWithdrawModal);
     withdrawClose.addEventListener('click', closeWithdrawModal);
@@ -204,7 +293,9 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Viewing the full transaction history will be available soon.');
     });
 
-    attachModalGestures();
+    attachWithdrawModalGestures();
+    attachDriverModalGestures();
+    attachNavigationListeners();
     renderSummary();
     renderTransactions();
 });
