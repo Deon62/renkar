@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Dashboard | Renkar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="driver.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1C9+gyM3C2ZKsv0b+7S/3u1u7B6uQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="driver-dashboard">
+        <section class="tab-panels">
+            <div class="tab-panel active" id="openRequestsPanel" role="tabpanel" aria-labelledby="tabOpenRequests">
+                <div class="cards-grid" id="openRequestsList"></div>
+            </div>
+            <div class="tab-panel" id="lastBookingsPanel" role="tabpanel" aria-labelledby="tabLastBookings" hidden>
+                <div class="cards-grid" id="lastBookingsList"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- More Options Modal -->
+    <div class="driver-more-modal" id="driverMoreModal" aria-hidden="true">
+        <div class="driver-modal-overlay" id="driverModalOverlay"></div>
+        <div class="driver-modal-content" role="dialog" aria-modal="true" aria-labelledby="driverMoreTitle">
+            <span class="modal-handle"></span>
+            <div class="driver-modal-header">
+                <h2 id="driverMoreTitle">More</h2>
+                <button class="driver-modal-close" id="driverCloseMore" aria-label="Close more options">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="driver-modal-list">
+                <li>
+                    <button type="button" class="modal-link" id="profileButton">
+                        <span><i class="fas fa-user"></i> Profile</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="modal-link" id="financesButton">
+                        <span><i class="fas fa-wallet"></i> Finances</span>
+                        <span class="earnings">KES 42,500</span>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="modal-link modal-logout" id="logoutButton">
+                        <span><i class="fas fa-sign-out-alt"></i> Logout</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="driver-bottom-nav" role="navigation" aria-label="Driver navigation">
+        <button class="driver-nav-item active" id="tabOpenRequests" data-target="openRequestsPanel" aria-controls="openRequestsPanel" aria-selected="true">
+            <i class="fas fa-car"></i>
+            <span>Open Requests</span>
+        </button>
+        <button class="driver-nav-item" id="tabLastBookings" data-target="lastBookingsPanel" aria-controls="lastBookingsPanel" aria-selected="false">
+            <i class="fas fa-clock"></i>
+            <span>Last Bookings</span>
+        </button>
+        <button class="driver-nav-item" id="tabMore" aria-label="More options">
+            <i class="fas fa-ellipsis-h"></i>
+            <span>More</span>
+        </button>
+    </nav>
+
+    <script src="driver.js"></script>
+</body>
+</html>

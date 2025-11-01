@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Redirect to booking page after showing success message
             setTimeout(() => {
-                window.location.href = flow === 'driver' ? 'index.html' : 'booking.html';
+                window.location.href = flow === 'driver' ? 'driver.html' : 'booking.html';
             }, 2000);
             
         }, 3000); // 3 second delay for demo

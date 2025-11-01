@@ -140,7 +140,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Redirect to license upload page after delay
         setTimeout(() => {
-            window.location.href = 'license-upload.html';
+            const currentParams = new URLSearchParams(window.location.search);
+            const flow = currentParams.get('flow');
+            const destination = flow ? `license-upload.html?flow=${flow}` : 'license-upload.html';
+            window.location.href = destination;
         }, 2000);
     }
 
