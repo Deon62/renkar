@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const flow = urlParams.get('flow') || 'customer';
+
+    const withFlow = (basePath) => {
+        if (flow && flow !== 'customer') {
+            const separator = basePath.includes('?') ? '&' : '?';
+            return `${basePath}${separator}flow=${flow}`;
+        }
+        return basePath;
+    };
+
     // License Upload Page
     if (document.getElementById('licenseUpload')) {
         const uploadArea = document.getElementById('uploadArea');
@@ -37,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         continueBtn.addEventListener('click', function() {
             // In a real app, you would upload the image to your server here
             // For this demo, we'll just proceed to the next page
-            window.location.href = 'selfie-capture.html';
+            window.location.href = withFlow('selfie-capture.html');
         });
     }
     
@@ -167,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
         continueToVerifyBtn.addEventListener('click', function() {
             // In a real app, you would upload the selfie to your server here
             // For this demo, we'll just proceed to the verification page
-            window.location.href = 'verification-loading.html';
+            window.location.href = withFlow('verification-loading.html');
         });
     }
     
@@ -183,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Redirect to booking page after showing success message
             setTimeout(() => {
-                window.location.href = 'booking.html';
+                window.location.href = flow === 'driver' ? 'index.html' : 'booking.html';
             }, 2000);
             
         }, 3000); // 3 second delay for demo
