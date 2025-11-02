@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Your Car | Renkar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="register-car-owner.css">
+</head>
+<body>
+    <main class="register-viewport">
+        <div class="register-card">
+            <header class="header-section">
+                <h1>Register Your Car</h1>
+                <p class="subtitle">Let your car start earning for you today.</p>
+            </header>
+
+            <form id="registrationForm" action="owner-verification.html" method="get">
+                <div class="form-section">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" value="+254" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email (Optional)</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="carModel">Car Make & Model</label>
+                        <input type="text" id="carModel" name="carModel" placeholder="e.g., Toyota Axio 2015" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="plate">Registration Plate</label>
+                        <input type="text" id="plate" name="plate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dailyRate">Daily Rate (KES)</label>
+                        <input type="number" id="dailyRate" name="dailyRate" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="carType">Car Type</label>
+                        <select id="carType" name="carType" required>
+                            <option value="">Select Type</option>
+                            <option value="sedan">Sedan</option>
+                            <option value="suv">SUV</option>
+                            <option value="van">Van</option>
+                            <option value="pickup">Pickup</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="carPhotos">Upload Car Photos</label>
+                        <input type="file" id="carPhotos" name="carPhotos" accept=".jpg,.png" multiple>
+                        <p class="hint">Add clear photos showing front, sides, and interior. (Up to 4)</p>
+                        <div id="photoPreviews" class="photo-previews"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Pickup Location</label>
+                        <input type="text" id="location" name="location" placeholder="e.g., Nairobi CBD" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idUpload">Upload ID/License (Optional)</label>
+                        <input type="file" id="idUpload" name="idUpload" accept=".jpg,.png,.pdf">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit for Verification</button>
+            </form>
+
+            <footer class="footer-section">
+                <p>By submitting, you agree to Renkar’s <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>
+            </footer>
+        </div>
+    </main>
+
+    <script src="register-car-owner.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification | Renkar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="owner-verification.css">
+</head>
+<body>
+    <main class="verification-viewport">
+        <div class="verification-card">
+            <!-- Loading State -->
+            <div id="loadingState" class="state loading">
+                <div class="loader">
+                    <div class="car-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 11l1.5-4.5h11L19 11M5 11v6a1 1 0 001 1h12a1 1 0 001-1v-6M5 11H3m16 0h2m-6 0v-3a2 2 0 00-4 0v3m-4 6h2m6 0h2" stroke="#0A1D37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <h1>Verifying your details...</h1>
+                <p>We’re reviewing your car info and verifying ownership. This usually takes a few minutes.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <!-- Success State -->
+            <div id="successState" class="state success" style="display: none;">
+                <div class="success-icon">
+                    <div class="checkmark-circle">
+                        <div class="checkmark"></div>
+                    </div>
+                </div>
+                <h1>Car Verified Successfully!</h1>
+                <p>Your car is now active and ready to start receiving bookings.</p>
+                <a href="/owner-dashboard" class="dashboard-btn">Go to Dashboard</a>
+            </div>
+
+            <footer class="support-tip">
+                <p>Need help? Contact our support team anytime through the 'More' section.</p>
+            </footer>
+        </div>
+    </main>
+
+    <script src="owner-verification.js"></script>
+</body>
+</html>
