@@ -4,6 +4,6 @@
   "description": "Opa car rental app",
   "main": "index.html",
   "scripts": {
-    "build": "echo 'Static site build complete'"
+    "vercel-build": "echo 'Static site build complete'"
   }
 }
