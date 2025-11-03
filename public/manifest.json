@@ -1,0 +1,20 @@
+{
+  "name": "Opa",
+  "short_name": "Opa",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A1D37",
+  "theme_color": "#0A1D37",
+  "icons": [
+    {
+      "src": "assets/logo/pa.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logo/pa.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
