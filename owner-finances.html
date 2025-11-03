@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Finances | Renkar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="owner-finances.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="finances-page" aria-labelledby="financesTitle">
+        <header class="finances-header">
+            <div class="header-icon" aria-hidden="true">
+                <i class="fas fa-wallet"></i>
+            </div>
+            <h1 id="financesTitle">Finances</h1>
+        </header>
+
+        <section class="finances-summary" aria-label="Account Summary">
+            <div class="summary-card">
+                <div class="summary-item">
+                    <span class="label">Current Balance</span>
+                    <strong id="currentBalance">KES 15,200</strong>
+                </div>
+                <div class="summary-divider" role="presentation"></div>
+                <div class="summary-item">
+                    <span class="label">Total Earnings</span>
+                    <strong id="totalEarnings">KES 42,500</strong>
+                </div>
+                <div class="summary-divider" role="presentation"></div>
+                <div class="summary-item">
+                    <span class="label">Withdrawn</span>
+                    <strong id="totalWithdrawn">KES 27,300</strong>
+                </div>
+            </div>
+            <button class="withdraw-button" id="withdrawButton" type="button">
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                Withdraw Funds
+            </button>
+        </section>
+
+        <section class="transactions-section" aria-labelledby="transactionsHeading">
+            <div class="section-header">
+                <h2 id="transactionsHeading">Recent Transactions</h2>
+                <button class="view-all" id="viewAllTransactions" type="button" aria-label="View all transactions">View all</button>
+            </div>
+            <div class="transactions-list" id="transactionsList" role="list">
+                <div class="transaction-item" role="listitem">
+                    <div class="transaction-info">
+                        <span class="transaction-description">Rental Income - Toyota Axio</span>
+                        <span class="transaction-date">Nov 1, 2023</span>
+                    </div>
+                    <span class="transaction-amount positive">+KES 2,500</span>
+                </div>
+                <div class="transaction-item" role="listitem">
+                    <div class="transaction-info">
+                        <span class="transaction-description">Withdrawal to M-PESA</span>
+                        <span class="transaction-date">Oct 30, 2023</span>
+                    </div>
+                    <span class="transaction-amount negative">-KES 5,000</span>
+                </div>
+                <div class="transaction-item" role="listitem">
+                    <div class="transaction-info">
+                        <span class="transaction-description">Rental Income - Honda Fit</span>
+                        <span class="transaction-date">Oct 29, 2023</span>
+                    </div>
+                    <span class="transaction-amount positive">+KES 3,000</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="owner-bottom-nav" role="navigation" aria-label="Owner navigation">
+        <a href="owner-dashboard.html" class="owner-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="owner-bookings.html" class="owner-nav-item">
+            <i class="fas fa-car"></i>
+            <span>Bookings</span>
+        </a>
+        <button class="owner-nav-item active" id="tabMore" aria-label="More options">
+            <i class="fas fa-ellipsis-h"></i>
+            <span>More</span>
+        </button>
+    </nav>
+
+    <div class="owner-more-modal" id="ownerMoreModal" aria-hidden="true">
+        <div class="owner-modal-overlay" id="ownerModalOverlay"></div>
+        <div class="owner-modal-content" role="dialog" aria-modal="true" aria-labelledby="ownerMoreTitle">
+            <span class="modal-handle" aria-hidden="true"></span>
+            <div class="owner-modal-header">
+                <h2 id="ownerMoreTitle">More</h2>
+                <button class="owner-modal-close" id="ownerCloseMore" type="button" aria-label="Close more options">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="owner-modal-list">
+                <li>
+                    <button type="button" class="modal-link" id="profileButton">
+                        <span><i class="fas fa-user"></i> Profile</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="modal-link" id="financesButton" aria-current="page">
+                        <span><i class="fas fa-wallet"></i> Finances</span>
+                        <span class="earnings">KES 42,500</span>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="modal-link modal-logout" id="ownerLogoutAlt">
+                        <span><i class="fas fa-sign-out-alt"></i> Logout</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="withdraw-modal" id="withdrawModal" aria-hidden="true">
+        <div class="modal-overlay" id="withdrawOverlay"></div>
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="withdrawTitle">
+            <span class="modal-handle" aria-hidden="true"></span>
+            <header class="modal-header">
+                <h2 id="withdrawTitle">Withdraw Funds</h2>
+                <button class="modal-close" id="withdrawClose" type="button" aria-label="Close withdraw modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </header>
+            <form class="withdraw-form" id="withdrawForm">
+                <fieldset class="method-group">
+                    <legend>Payment Method</legend>
+                    <label class="method-option" for="methodMpesa">
+                        <input type="radio" name="method" id="methodMpesa" value="M-PESA" required>
+                        <span>M-PESA</span>
+                    </label>
+                    <label class="method-option" for="methodAirtel">
+                        <input type="radio" name="method" id="methodAirtel" value="Airtel Money">
+                        <span>Airtel Money</span>
+                    </label>
+                    <label class="method-option" for="methodBank">
+                        <input type="radio" name="method" id="methodBank" value="Bank">
+                        <span>Bank Transfer</span>
+                    </label>
+                </fieldset>
+
+                <label class="form-field" for="withdrawNumber">
+                    <span>Account or Phone Number</span>
+                    <input type="text" id="withdrawNumber" name="number" placeholder="e.g. 0712 345 678" required>
+                </label>
+
+                <label class="form-field" for="withdrawAmount">
+                    <span>Amount (KES)</span>
+                    <input type="number" id="withdrawAmount" name="amount" min="100" step="50" placeholder="e.g. 2500" required>
+                </label>
+
+                <button class="confirm-button" type="submit">Confirm Withdrawal</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="owner-finances.js"></script>
+</body>
+</html>

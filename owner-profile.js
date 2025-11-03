@@ -87,13 +87,13 @@ document.addEventListener('DOMContentLoaded', () => {
     ownerLogout?.addEventListener('click', handleLogout);
     ownerLogoutAlt?.addEventListener('click', handleLogout);
 
-    profileButton?.addEventListener('click', () => {
-        closeMoreModal();
-        // Already on profile page
-    });
-
     financesButton?.addEventListener('click', () => {
         closeMoreModal();
         window.location.href = 'owner-finances.html';
+    });
+
+    profileButton?.addEventListener('click', () => {
+        closeMoreModal();
+        // Already on profile page
     });
 });

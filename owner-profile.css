@@ -502,6 +502,7 @@ body {
 .modal-link i {
     font-size: 1rem;
     color: inherit;
+    margin-right: 0.5rem;
 }
 
 .modal-link:hover {
