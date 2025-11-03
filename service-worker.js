@@ -1,4 +1,4 @@
-const CACHE_NAME = 'renkar-v4';
+const CACHE_NAME = 'renkar-v5';
 const OFFLINE_PAGE = '/offline.html';
 
 // Core assets that must be cached immediately
