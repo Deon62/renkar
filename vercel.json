@@ -12,17 +12,38 @@
     {
       "src": "assets/**/*",
       "use": "@vercel/static"
+    },
+    {
+      "src": "js/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.{png,jpg,jpeg,svg,ico}",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
+      "src": "^/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
       "src": "/service-worker.js",
       "headers": {
         "Cache-Control": "no-cache, no-store, must-revalidate"
-      }
+      },
+      "dest": "/service-worker.js"
     },
     {
-      "src": "/(.*)",
+      "src": "^/(.*\\.(?:css|js|json|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot))",
+      "dest": "/$1"
+    },
+    {
+      "src": "^/(about|booking|profile|driver|owner-dashboard|owner-finances|owner-profile|owner-verification|register-car-owner|join-owner|verification|support|driver-profile|driver-finances|owner-bookings|car-details|checkout|payment-success|booking-history|offline)\\.html$",
+      "dest": "/$1.html"
+    },
+    {
+      "src": "^/[^.]*$",
       "dest": "/index.html"
     }
   ]
