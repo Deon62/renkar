@@ -4,8 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0A1D37">
-    <link rel="manifest" href="/public/manifest.json">
-    <link rel="icon" href="assets/logo/pa.png">
+    <meta name="description" content="Opa - Your car rental solution">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Opa">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="assets/logo/pa.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="assets/logo/pa.png">
+    <link rel="shortcut icon" href="assets/logo/pa.png">
     <title>Opa - Drive your freedom</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -266,6 +273,93 @@
     </footer>
 
     <script src="script.js"></script>
-    <script src="js/nav.js"></script>
+    <script>
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                        
+                        // Check for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // New update available
+                                    showUpdateNotification();
+                                }
+                            });
+                        });
+                    })
+                    .catch(err => console.log('ServiceWorker registration failed: ', err));
+
+                // Check for updates on page load
+                if (navigator.serviceWorker.controller) {
+                    navigator.serviceWorker.controller.postMessage({ type: 'PING' });
+                }
+            });
+        }
+
+        // Show update notification
+        function showUpdateNotification() {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #0A1D37;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 4px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            `;
+            
+            notification.innerHTML = `
+                <span>New update available!</span>
+                <button id="updateButton" style="
+                    background: #FFD700;
+                    color: #0A1D37;
+                    border: none;
+                    padding: 6px 12px;
+                    border-radius: 4px;
+                    font-weight: bold;
+                    cursor: pointer;
+                ">Update Now</button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            document.getElementById('updateButton').addEventListener('click', () => {
+                const registration = navigator.serviceWorker.getRegistration();
+                if (registration && registration.waiting) {
+                    registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+                }
+                notification.remove();
+                window.location.reload();
+            });
+            
+            // Auto-hide after 10 seconds
+            setTimeout(() => {
+                notification.style.transition = 'opacity 0.5s';
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 500);
+            }, 10000);
+        }
+        
+        // Listen for controller change (new service worker activated)
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (!refreshing) {
+                window.location.reload();
+                refreshing = true;
+            }
+        });
+    </script>
 </body>
 </html>
