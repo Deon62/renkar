@@ -1,20 +1,27 @@
 {
-  "name": "Opa",
-  "short_name": "Opa",
+  "name": "Renkar - Car Rental App",
+  "short_name": "Renkar",
+  "description": "Your car rental solution - Drive your freedom",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#0A1D37",
+  "orientation": "portrait",
+  "background_color": "#FFFFFF",
   "theme_color": "#0A1D37",
   "icons": [
     {
-      "src": "assets/logo/pa.png",
+      "src": "assets/logo/opa.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "assets/logo/pa.png",
+      "src": "assets/logo/opa.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "categories": ["travel", "utilities"],
+  "screenshots": []
 }

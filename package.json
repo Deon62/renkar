@@ -1,17 +1,23 @@
 {
-  "name": "opa",
+  "name": "renkar",
   "version": "1.0.0",
+  "description": "Car rental PWA application",
   "private": true,
   "scripts": {
-    "dev": "serve -s .",
-    "build": "echo 'Build complete'",
-    "start": "serve -s .",
-    "vercel-build": "npm run build"
+    "start": "echo 'No start script needed for static site'",
+    "build": "echo 'No build needed for static site'",
+    "vercel-build": "echo 'Static site - no build required'"
   },
-  "dependencies": {
-    "serve": "^14.2.0"
-  },
+  "keywords": [
+    "pwa",
+    "car-rental",
+    "progressive-web-app"
+  ],
+  "author": "Renkar Team",
+  "license": "MIT",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
   }
 }
+
