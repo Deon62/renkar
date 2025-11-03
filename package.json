@@ -1,32 +1,17 @@
 {
   "name": "opa",
   "version": "1.0.0",
-  "description": "Opa car rental app",
-  "main": "index.html",
+  "private": true,
   "scripts": {
+    "dev": "serve -s .",
+    "build": "echo 'Build complete'",
     "start": "serve -s .",
-    "build": "echo 'Static site build complete'",
-    "vercel-build": "echo 'Vercel build complete'"
+    "vercel-build": "npm run build"
   },
   "dependencies": {
-    "@vercel/static-build": "^1.0.0",
     "serve": "^14.2.0"
-  },
-  "devDependencies": {
-    "vercel": "^28.16.7"
   },
   "engines": {
     "node": ">=14.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Deon62/renkar.git"
-  },
-  "keywords": [
-    "car",
-    "rental",
-    "pwa"
-  ],
-  "author": "",
-  "license": "MIT"
+  }
 }

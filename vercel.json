@@ -2,15 +2,15 @@
   "version": 2,
   "builds": [
     {
-      "src": "*.{js,html,css}",
+      "src": "**/*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "**/*.{js,css}",
       "use": "@vercel/static"
     },
     {
       "src": "assets/**/*",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "js/**/*",
       "use": "@vercel/static"
     }
   ],
@@ -18,57 +18,12 @@
     {
       "src": "/service-worker.js",
       "headers": {
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-        "Pragma": "no-cache",
-        "X-Service-Worker-Allowed": "/"
+        "Cache-Control": "no-cache, no-store, must-revalidate"
       }
     },
     {
-      "src": "^/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "^/(.*\\.(?:css|js|json|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot))",
-      "headers": {
-        "cache-control": "public, max-age=31536000, immutable"
-      }
-    },
-    {
-      "src": "^/(about|booking|profile|driver|owner-dashboard|owner-finances|owner-profile|owner-verification|register-car-owner|join-owner|verification|support|driver-profile|driver-finances|owner-bookings|car-details|checkout|payment-success|booking-history|offline)/?$",
-      "dest": "/$1.html"
-    },
-    {
-      "src": "^/(.*)",
+      "src": "/(.*)",
       "dest": "/index.html"
-    }
-  ],
-  "trailingSlash": false,
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
-      ]
-    },
-    {
-      "source": "/(.*).(js|css)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
     }
   ]
 }
