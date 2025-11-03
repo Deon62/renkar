@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ownerLogoutAlt = document.getElementById('ownerLogoutAlt');
     const tabMore = document.getElementById('tabMore');
     const profileButton = document.getElementById('profileButton');
-    const financesButton = document.getElementById('financesButton');
+    const supportButton = document.getElementById('supportButton');
 
     const viewDocs = document.getElementById('viewDocs');
     const documentsModal = document.getElementById('documentsModal');
@@ -95,5 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
     profileButton?.addEventListener('click', () => {
         closeMoreModal();
         // Already on profile page
+    });
+
+    supportButton?.addEventListener('click', () => {
+        closeMoreModal();
+        alert('Support page coming soon!');
     });
 });

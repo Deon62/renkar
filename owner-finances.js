@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ownerCloseMore = document.getElementById('ownerCloseMore');
     const profileButton = document.getElementById('profileButton');
     const financesButton = document.getElementById('financesButton');
+    const supportButton = document.getElementById('supportButton');
     const ownerLogoutAlt = document.getElementById('ownerLogoutAlt');
 
     const financesState = {
@@ -248,6 +249,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         financesButton?.addEventListener('click', closeOwnerMoreModal);
+
+        supportButton?.addEventListener('click', () => {
+            closeOwnerMoreModal();
+            alert('Support page coming soon!');
+        });
 
         ownerLogoutAlt?.addEventListener('click', () => {
             closeOwnerMoreModal();
