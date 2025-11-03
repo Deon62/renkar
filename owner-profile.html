@@ -16,13 +16,27 @@
                 <span class="toggle-indicator"></span>
                 <span class="toggle-label">List Cars</span>
             </button>
+            <button class="settings-btn" aria-label="Settings">
+                <i class="fas fa-cog"></i>
+            </button>
             <div class="hero-info">
                 <img src="assets/deon.jpg" alt="Owner portrait" class="hero-avatar">
                 <div>
                     <h1 id="ownerName">Deon Orina</h1>
                     <p id="ownerStatus">Cars Listed: 2</p>
+                    <div class="owner-meta">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (87 reviews)</span>
+                        </div>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Nairobi, Kenya</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <p class="trust-tagline">Trusted by 87 renters</p>
         </header>
 
         <section class="profile-card">
@@ -56,8 +70,38 @@
                     <span class="chip verified"><i class="fas fa-shield-check"></i> Fully Verified</span>
                 </div>
             </div>
+            <div class="verification-summary">
+                <h3>Verification Summary</h3>
+                <div class="verification-badges">
+                    <span class="badge"><i class="fas fa-check"></i> ID</span>
+                    <span class="badge"><i class="fas fa-check"></i> License</span>
+                    <span class="badge"><i class="fas fa-check"></i> Logbook</span>
+                    <span class="badge"><i class="fas fa-check"></i> Insurance</span>
+                </div>
+                <div class="documents-list">
+                    <div class="document-item">
+                        <span>ID Document</span>
+                        <span class="status verified"><i class="fas fa-check"></i> Verified</span>
+                    </div>
+                    <div class="document-item">
+                        <span>Driver's License</span>
+                        <span class="status verified"><i class="fas fa-check"></i> Verified</span>
+                    </div>
+                    <div class="document-item">
+                        <span>Logbook</span>
+                        <span class="status verified"><i class="fas fa-check"></i> Verified</span>
+                    </div>
+                    <div class="document-item">
+                        <span>Insurance</span>
+                        <span class="status verified"><i class="fas fa-check"></i> Verified</span>
+                    </div>
+                </div>
+                <div class="document-actions">
+                    <button class="btn-secondary" id="viewDocs">View Documents</button>
+                    <button class="btn-primary" id="uploadDoc">Upload Document</button>
+                </div>
+            </div>
             <div class="profile-actions">
-                <button class="btn-secondary" id="viewDocs">View Documents</button>
                 <button class="btn-primary" id="editProfile">Edit Profile</button>
             </div>
         </section>
@@ -123,6 +167,28 @@
                     </button>
                 </li>
             </ul>
+        </div>
+    </div>
+
+    <!-- Documents Modal -->
+    <div id="documentsModal" class="owner-modal">
+        <div class="owner-modal-overlay" onclick="closeModal()"></div>
+        <div class="owner-modal-content">
+            <div class="owner-modal-header">
+                <h2>Documents</h2>
+                <button onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="document-preview">
+                    <img src="assets/deon.jpg" alt="ID Document" style="width: 100%; border-radius: 8px;">
+                    <p>ID Document</p>
+                </div>
+                <div class="document-preview">
+                    <img src="assets/deon.jpg" alt="License" style="width: 100%; border-radius: 8px;">
+                    <p>License</p>
+                </div>
+                <!-- Add more as needed -->
+            </div>
         </div>
     </div>
 

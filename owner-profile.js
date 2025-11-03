@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const profileButton = document.getElementById('profileButton');
     const financesButton = document.getElementById('financesButton');
 
+    const viewDocs = document.getElementById('viewDocs');
+    const documentsModal = document.getElementById('documentsModal');
+
     statusToggle?.addEventListener('click', () => {
         const isActive = statusToggle.classList.toggle('active');
         statusToggle.setAttribute('aria-pressed', String(isActive));
@@ -42,18 +45,41 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('owner-modal-open');
     };
 
+    const openDocumentsModal = () => {
+        documentsModal?.classList.add('show');
+        document.body.classList.add('owner-modal-open');
+    };
+
+    const closeDocumentsModal = () => {
+        documentsModal?.classList.remove('show');
+        document.body.classList.remove('owner-modal-open');
+    };
+
+    const closeModal = () => {
+        closeMoreModal();
+        closeDocumentsModal();
+    };
+
     tabMore?.addEventListener('click', openMoreModal);
-    ownerMoreOverlay?.addEventListener('click', closeMoreModal);
-    ownerMoreClose?.addEventListener('click', closeMoreModal);
+    ownerMoreOverlay?.addEventListener('click', closeModal);
+    ownerMoreClose?.addEventListener('click', closeModal);
+
+    const uploadDoc = document.getElementById('uploadDoc');
+
+    viewDocs?.addEventListener('click', openDocumentsModal);
+
+    uploadDoc?.addEventListener('click', () => {
+        alert('Upload document functionality would open file picker here.');
+    });
 
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && ownerMoreModal?.classList.contains('open')) {
-            closeMoreModal();
+        if (event.key === 'Escape' && (ownerMoreModal?.classList.contains('open') || documentsModal?.classList.contains('show'))) {
+            closeModal();
         }
     });
 
     const handleLogout = () => {
-        closeMoreModal();
+        closeModal();
         alert('You have been logged out.');
         window.location.href = 'index.html';
     };
