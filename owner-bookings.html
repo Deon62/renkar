@@ -125,10 +125,30 @@
                 <button onclick="closeModal()">&times;</button>
             </div>
             <ul class="more-modal-list">
-                <li><a href="owner-profile.html"><i class="fas fa-user"></i> Profile</a></li>
-                <li><a href="#"><i class="fas fa-wallet"></i> Finances</a></li>
-                <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
-                <li><button type="button" class="logout-btn" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Logout</button></li>
+                <li>
+                    <button type="button" class="modal-link" onclick="window.location.href='owner-profile.html'">
+                        <span><i class="fas fa-user"></i> Profile</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="modal-link" onclick="window.location.href='owner-finances.html'">
+                        <span><i class="fas fa-wallet"></i> Finances</span>
+                        <span class="earnings">KES 42,500</span>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="modal-link" onclick="alert('Support page coming soon!')">
+                        <span><i class="fas fa-headset"></i> Support</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="modal-link modal-logout" onclick="alert('Logged out'); window.location.href='index.html'">
+                        <span><i class="fas fa-sign-out-alt"></i> Logout</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </li>
             </ul>
         </div>
     </div>

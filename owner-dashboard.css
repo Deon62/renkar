@@ -472,14 +472,9 @@ body.more-modal-open {
     text-decoration: none;
 }
 
-.modal-content button {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: var(--accent);
-    color: var(--bg-white);
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+.more-modal-list a i,
+.more-modal-list button i {
+    margin-right: 0.5rem;
 }
 
 @media (max-width: 360px) {
