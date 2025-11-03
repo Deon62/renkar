@@ -2,5 +2,8 @@
   "name": "opa",
   "version": "1.0.0",
   "description": "Opa car rental app",
-  "main": "index.html"
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Static site build complete'"
+  }
 }
