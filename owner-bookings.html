@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings | Renkar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="owner-bookings.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="bookings-header">
+        <h1>Bookings</h1>
+        <nav class="tab-nav">
+            <button class="tab-btn active" data-tab="ongoing">Ongoing</button>
+            <button class="tab-btn" data-tab="upcoming">Upcoming</button>
+            <button class="tab-btn" data-tab="completed">Completed</button>
+            <button class="tab-btn" data-tab="cancelled">Cancelled</button>
+        </nav>
+    </header>
+
+    <!-- Bookings List -->
+    <main class="bookings-main">
+        <div id="ongoing" class="tab-content active">
+            <div class="booking-card">
+                <img src="assets/cars/r7.jpg" alt="Car" class="booking-thumb">
+                <div class="booking-info">
+                    <h3>Toyota Axio 2015</h3>
+                    <p class="plate">KCB 123A</p>
+                    <p class="dates">From: Nov 2 — To: Nov 4</p>
+                    <p class="rentee">Booked by: Brian M.</p>
+                </div>
+                <div class="booking-actions">
+                    <span class="status ongoing">🟢 Ongoing</span>
+                    <button class="view-btn" onclick="openBookingModal(1)">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="upcoming" class="tab-content">
+            <div class="booking-card">
+                <img src="assets/cars/r8.jpg" alt="Car" class="booking-thumb">
+                <div class="booking-info">
+                    <h3>Honda Fit 2018</h3>
+                    <p class="plate">KCD 456B</p>
+                    <p class="dates">From: Nov 10 — To: Nov 12</p>
+                    <p class="rentee">Booked by: Alice K.</p>
+                </div>
+                <div class="booking-actions">
+                    <span class="status upcoming">🔵 Upcoming</span>
+                    <button class="view-btn" onclick="openBookingModal(2)">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="completed" class="tab-content">
+            <div class="empty-state">
+                <div class="empty-icon">🗓️</div>
+                <h3>No completed bookings yet.</h3>
+                <p>Once users return your cars, they'll appear here.</p>
+            </div>
+        </div>
+
+        <div id="cancelled" class="tab-content">
+            <div class="empty-state">
+                <div class="empty-icon">❌</div>
+                <h3>No cancelled bookings.</h3>
+                <p>All good here!</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="owner-dashboard.html" class="nav-item" aria-label="Dashboard">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="owner-bookings.html" class="nav-item active" aria-label="Bookings">
+            <i class="fas fa-car"></i>
+            <span>Bookings</span>
+        </a>
+        <button class="nav-item more-toggle" onclick="openMoreModal()" aria-label="More options">
+            <i class="fas fa-ellipsis-h"></i>
+            <span>More</span>
+        </button>
+    </nav>
+
+    <!-- Booking Details Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Booking Details</h2>
+                <button onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/cars/r7.jpg" alt="Car" class="modal-car-image">
+                <h3>Toyota Axio 2015</h3>
+                <p><strong>Booking Period:</strong> Nov 2 - Nov 4</p>
+                <p><strong>Pickup Location:</strong> Nairobi CBD</p>
+                <p><strong>Return Location:</strong> Nairobi CBD</p>
+                <p><strong>Payment:</strong> M-Pesa - KES 7,500</p>
+                <p><strong>Rentee:</strong> Brian M.</p>
+                <div class="status-section">
+                    <span class="status ongoing">🟢 Ongoing</span>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary" onclick="markCompleted()">Mark Completed</button>
+                    <button class="btn-danger" onclick="cancelBooking()">Cancel Booking</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- More Modal -->
+    <div id="moreModal" class="more-modal">
+        <div class="more-modal-overlay" onclick="closeModal()"></div>
+        <div class="more-modal-content">
+            <div class="more-modal-header">
+                <h2>More</h2>
+                <button onclick="closeModal()">&times;</button>
+            </div>
+            <ul class="more-modal-list">
+                <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="#"><i class="fas fa-wallet"></i> Finances</a></li>
+                <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
+                <li><button type="button" class="logout-btn" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Logout</button></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="owner-bookings.js"></script>
+</body>
+</html>
