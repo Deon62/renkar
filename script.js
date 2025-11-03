@@ -211,9 +211,31 @@ document.addEventListener('DOMContentLoaded', () => {
     handleScroll(); // Check initial state
     
     // Initialize menu toggle
-    if (menuToggle) {
+    const navPanel = document.getElementById('navPanel');
+    const closeMenu = document.getElementById('closeMenu');
+    const overlay = document.getElementById('overlay');
+    
+    if (menuToggle && navPanel) {
         menuToggle.addEventListener('click', () => {
-            document.body.classList.toggle('menu-open');
+            navPanel.classList.add('active');
+            if (overlay) overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+    
+    if (closeMenu) {
+        closeMenu.addEventListener('click', () => {
+            navPanel.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    }
+    
+    if (overlay) {
+        overlay.addEventListener('click', () => {
+            navPanel.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
         });
     }
     
